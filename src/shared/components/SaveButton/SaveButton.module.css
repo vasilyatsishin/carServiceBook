@@ -1,0 +1,31 @@
+.mainWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  outline: 2px solid var(--yellow-color);
+  background-color: initial;
+  height: 50px;
+  width: 50%;
+  border: 0;
+  color: black;
+  font-size: 20px;
+  border-radius: 5px;
+  font-family: "Montserrat";
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.buttonActive:hover {
+  background-color: var(--yellow-color);
+  outline: none;
+  color: black;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}

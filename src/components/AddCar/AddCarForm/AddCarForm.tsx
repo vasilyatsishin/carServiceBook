@@ -1,0 +1,49 @@
+import type React from "react";
+import Input from "../../../shared/components/Input/Input";
+import { useAddCarForm } from "./useAddCarForm";
+import styles from "./AddCarForm.module.css";
+import PhotoInput from "../../../shared/PhotoInput/PhotoInput";
+import SaveButton from "../../../shared/components/SaveButton/SaveButton";
+import { odometorValidator } from "../../../shared/helpers/validators/addCarValidator";
+import { formatOdometer } from "../../../shared/helpers/formatters/carFormatter";
+const AddCarForm: React.FC = () => {
+  const { setters, state, handlers } = useAddCarForm();
+  return (
+    <>
+      <div className={styles.mainWrapper}>
+        <PhotoInput
+          setData={setters.setPhoto}
+          placeholder="Додайте фото вашого авто"
+          data={state.photo}
+        />
+        <Input
+          data={state.carName}
+          setData={setters.setCarName}
+          label="Назва авто"
+          placeholder="BMW M5 2021"
+          validator={(value) =>
+            value.length >= 3 ? null : "Назва має бути заповнена"
+          }
+        />
+
+        <Input
+          data={state.odometer}
+          setData={(value: string) =>
+            setters.setOdometer(formatOdometer(value))
+          }
+          label="Пробіг, км"
+          placeholder="195.000"
+          validator={(value) =>
+            odometorValidator(value) ? null : "Пробіг має містити тільки цифри"
+          }
+        />
+        <SaveButton
+          submitHandler={handlers.handleSubmit}
+          isActive={state.isSendButtonActive}
+        />
+      </div>
+    </>
+  );
+};
+
+export default AddCarForm;

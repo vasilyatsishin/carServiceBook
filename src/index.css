@@ -1,0 +1,15 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Montserrat";
+}
+
+/* Color constants  */
+:root {
+  --yellow-color: #dada11;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("./assets/font/Montserrat/Montserrat-Regular.ttf");
+}

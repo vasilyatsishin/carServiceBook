@@ -1,0 +1,17 @@
+.mainWrapper {
+  width: 425px;
+  height: 550px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  margin-bottom: 25px;
+  width: calc(33.333% - 20px); /* Приклад на 3 в ряд */
+  margin: 10px;
+}
+
+.photo {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}

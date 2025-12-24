@@ -1,0 +1,27 @@
+.mainWrapper {
+  width: 70%;
+  height: 60px;
+  margin-bottom: 45px;
+}
+
+.input {
+  width: 100%;
+  height: 70%;
+  border: 0;
+  border-bottom: 1px solid black;
+  outline: 0;
+  padding: 0 0 0 15px;
+  font-size: 15px;
+  transition: border ease 0.25s;
+  margin-top: 5px;
+}
+
+.input:focus {
+  border-bottom: 1px solid var(--yellow-color);
+  transition: ease 0.25s;
+}
+
+.label {
+  font-size: 16px;
+  margin: 0;
+}
