@@ -1,0 +1,18 @@
+.mainWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.paddingWrapper {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.horizontalWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 47.5%;
+  height: 1050px;
+}

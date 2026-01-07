@@ -1,0 +1,19 @@
+.headerWrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 0;
+  transition: color ease 0.3s;
+}
+
+.addButton:hover {
+  color: var(--yellow-color);
+  transition: color ease 0.3s;
+}

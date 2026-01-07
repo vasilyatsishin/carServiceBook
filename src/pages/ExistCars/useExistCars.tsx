@@ -1,17 +1,20 @@
 import { useState } from "react";
-import { type CarReceivingObject } from "../../interfaces/Cars/CarInterface";
 import { getCars } from "../../services/carService";
+import { useDispatch, useSelector } from "react-redux";
+import { setCars } from "../../redux/slices/carsSlice";
+import type { RootState } from "../../redux/store";
 
 export const useExistCars = () => {
-  const [cars, setCars] = useState<CarReceivingObject[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const dispatch = useDispatch();
+  const cars = useSelector((state: RootState) => state.carsState.cars);
 
   const fetchCars = async () => {
     try {
       setIsLoading(true);
       const data = await getCars();
-      setCars(data);
-      console.log(data); // тут вже є дані
+      dispatch(setCars(data));
     } catch (e) {
       console.log(e);
     } finally {
@@ -26,9 +29,6 @@ export const useExistCars = () => {
     state: {
       cars,
       isLoading,
-    },
-    setters: {
-      setCars,
     },
   };
 };

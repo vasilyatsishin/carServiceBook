@@ -7,7 +7,8 @@ interface InputProps {
   placeholder: string;
   data: string;
   setData: (value: string) => void;
-  validator?: (value: string) => string | null; // функція для валідації, повертає помилку або null
+  validator?: (value: string) => string | null;
+  variant: "addCar" | "addMaintenance";
 }
 
 const Input: React.FC<InputProps> = ({
@@ -16,6 +17,7 @@ const Input: React.FC<InputProps> = ({
   setData,
   placeholder,
   validator,
+  variant,
 }) => {
   const [error, setError] = useState<string | null>("");
 
@@ -33,7 +35,13 @@ const Input: React.FC<InputProps> = ({
 
   return (
     <>
-      <div className={styles.mainWrapper}>
+      <div
+        className={
+          variant === "addCar"
+            ? styles.mainWrapper
+            : styles.mainWrapperMaintenance
+        }
+      >
         <p className={styles.label}>{label}</p>
         <input
           value={data}

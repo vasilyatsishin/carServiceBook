@@ -6,6 +6,14 @@
   margin-bottom: 25px;
   width: calc(33.333% - 20px); /* Приклад на 3 в ряд */
   margin: 10px;
+  transition: box-shadow ease 0.5s;
+  text-decoration: none;
+  color: black;
+}
+
+.mainWrapper:hover {
+  box-shadow: 0 10px 8px rgba(0, 0, 0, 0.5);
+  transition: box-shadow ease 0.5s;
 }
 
 .photo {
@@ -14,4 +22,16 @@
   object-fit: cover;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
+}
+
+.textWrapper {
+  margin-left: 10px;
+}
+
+.header {
+  font-weight: 900;
+}
+
+.description {
+  font-weight: 500;
 }

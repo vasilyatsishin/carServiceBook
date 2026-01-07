@@ -6,6 +6,7 @@ import PhotoInput from "../../../shared/PhotoInput/PhotoInput";
 import SaveButton from "../../../shared/components/SaveButton/SaveButton";
 import { odometorValidator } from "../../../shared/helpers/validators/addCarValidator";
 import { formatOdometer } from "../../../shared/helpers/formatters/carFormatter";
+
 const AddCarForm: React.FC = () => {
   const { setters, state, handlers } = useAddCarForm();
   return (
@@ -24,6 +25,7 @@ const AddCarForm: React.FC = () => {
           validator={(value) =>
             value.length >= 3 ? null : "Назва має бути заповнена"
           }
+          variant="addCar"
         />
 
         <Input
@@ -36,6 +38,7 @@ const AddCarForm: React.FC = () => {
           validator={(value) =>
             odometorValidator(value) ? null : "Пробіг має містити тільки цифри"
           }
+          variant="addCar"
         />
         <SaveButton
           submitHandler={handlers.handleSubmit}

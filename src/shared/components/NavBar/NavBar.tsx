@@ -10,7 +10,7 @@ const NavBar: React.FC = () => {
         <NavLink to={pathConstants.EXIST_CARS} className={styles.navlink}>
           Мої автомобілі
         </NavLink>
-        <NavLink to={pathConstants.EXIST_CARS} className={styles.navlink}>
+        <NavLink to={pathConstants.MAINTENANCE} className={styles.navlink}>
           Обслуговування
         </NavLink>
         <NavLink

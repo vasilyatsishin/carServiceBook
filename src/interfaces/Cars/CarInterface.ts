@@ -1,8 +1,8 @@
 export interface CarEntity {
   id?: number;
-  odometer: number;
+  odometer: string;
   name: string;
-  photo: string;
+  photo?: File;
 }
 
 export interface CarReceivingObject {

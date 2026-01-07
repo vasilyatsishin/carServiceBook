@@ -1,0 +1,69 @@
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0);
+  pointer-events: none;
+  transition: background-color 300ms ease;
+}
+
+.overlay[data-visible="true"] {
+  background-color: rgba(0, 0, 0, 0.8);
+  pointer-events: auto;
+}
+
+.mainWrapper {
+  width: 50%;
+  height: 45vh;
+  background-color: white;
+  border-radius: 12px;
+  transform: scale(0.95);
+  opacity: 0;
+  transition: all 300ms ease;
+  display: flex;
+  padding-bottom: 45px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0);
+  pointer-events: none;
+  transition: background-color 300ms ease;
+}
+
+.overlay[data-visible="true"] .mainWrapper {
+  pointer-events: auto;
+  transform: scale(1);
+  opacity: 1;
+}
+
+.fullsizeWrapper {
+  width: 95%;
+  margin-bottom: 45px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox {
+  accent-color: var(--yellow-color);
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  margin-right: 10px;
+}

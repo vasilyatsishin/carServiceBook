@@ -1,4 +1,5 @@
 import api, { BASE_URL } from "../api/apiConfig";
+import { API_CONSTANTS } from "../constants/apiConstants";
 import type {
   CarEntity,
   CarReceivingObject,
@@ -6,7 +7,9 @@ import type {
 
 // GET
 export const getCars = async (): Promise<CarReceivingObject[]> => {
-  const res = await api.get<CarReceivingObject[]>("/cars/exist-cars");
+  const res = await api.get<CarReceivingObject[]>(
+    API_CONSTANTS.CARS.GET_EXIST_CARS
+  );
   return res.data.map((car) => ({
     ...car,
     // Тепер photo — це просто посилання на ваш сервер
@@ -16,6 +19,15 @@ export const getCars = async (): Promise<CarReceivingObject[]> => {
 
 // POST
 export const addCar = async (car: CarEntity): Promise<CarEntity> => {
-  const res = await api.post<CarEntity>("/cars", car);
+  const formData = new FormData();
+  formData.append("name", car.name);
+  const odometerNumber = Number(car.odometer.replace(/\./g, ""));
+  formData.append("odometer", odometerNumber.toString());
+  if (car.photo) formData.append("photo", car.photo);
+
+  const res = await api.post<CarEntity>(
+    API_CONSTANTS.CARS.CAR_CREATE,
+    formData
+  );
   return res.data;
 };
