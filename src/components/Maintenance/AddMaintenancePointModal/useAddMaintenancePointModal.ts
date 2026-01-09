@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { odometorValidator } from "../../../shared/helpers/validators/addCarValidator";
 import type { MaintenanceJobSendObject } from "../../../interfaces/Maintenance/MaintenanceJobInterface";
 import { addMaintenanceTypeJob } from "../../../services/maintenanceService";
+import { parseOdometerIntoNumber } from "../../../shared/helpers/formatters/carFormatter";
 
 interface useAddMaintenancePointModalProps {
   carId: string;
@@ -26,7 +27,7 @@ export const useAddMaintenancePointModal = ({
   const handleSubmit = async () => {
     const sendObject: MaintenanceJobSendObject = {
       name,
-      interval: Number(interval.replace(/\./g, "")),
+      interval: parseOdometerIntoNumber(interval),
       applyToAllCars: addToAllCars,
       carId: Number(carId),
     };

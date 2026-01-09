@@ -1,0 +1,28 @@
+.mainWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.generalInfo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.progressBarWrapper {
+  background-color: rgb(192, 186, 186);
+  width: 100%;
+  border-radius: 12px;
+  height: 7px;
+}
+
+.progressBar {
+  background-color: var(--yellow-color);
+  border-radius: 12px;
+  height: 7px;
+}
+
+.name,
+.interval {
+  margin-bottom: 10px;
+}

@@ -24,7 +24,7 @@ const NextMaintenance: React.FC = () => {
             <MaintenancePoint
               interval={e.frequency}
               maintenanceName={e.name}
-              nextMaintenance={e.frequency - 1555}
+              nextMaintenance={e.frequency - 23425}
             />
           </>
         ))}

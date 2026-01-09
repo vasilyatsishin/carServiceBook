@@ -1,6 +1,6 @@
 .headerWrapper {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -16,4 +16,8 @@
 .addButton:hover {
   color: var(--yellow-color);
   transition: color ease 0.3s;
+}
+
+.header {
+  font-weight: 800;
 }

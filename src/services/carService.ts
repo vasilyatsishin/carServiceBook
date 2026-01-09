@@ -4,6 +4,7 @@ import type {
   CarEntity,
   CarReceivingObject,
 } from "../interfaces/Cars/CarInterface";
+import { parseOdometerIntoNumber } from "../shared/helpers/formatters/carFormatter";
 
 // GET
 export const getCars = async (): Promise<CarReceivingObject[]> => {
@@ -21,7 +22,7 @@ export const getCars = async (): Promise<CarReceivingObject[]> => {
 export const addCar = async (car: CarEntity): Promise<CarEntity> => {
   const formData = new FormData();
   formData.append("name", car.name);
-  const odometerNumber = Number(car.odometer.replace(/\./g, ""));
+  const odometerNumber = parseOdometerIntoNumber(car.odometer);
   formData.append("odometer", odometerNumber.toString());
   if (car.photo) formData.append("photo", car.photo);
 
