@@ -28,11 +28,20 @@ const MaintenancePoint: React.FC<MaintenancePointProps> = ({
         <div
           className={styles.progressBar}
           style={{
-            width: `${lastChangeRangeToPercents(nextMaintenance, interval)}%`,
+            ["--target-width" as any]: `${lastChangeRangeToPercents(
+              nextMaintenance,
+              interval
+            )}%`,
           }}
         ></div>
       </div>
-      <div className={styles.description}>{nextMaintenance}</div>
+      <div className={styles.description}>
+        <h5 className={styles.nextMaintenance}>
+          {nextMaintenance >= 0
+            ? `Заміна через ${formatOdometer(String(nextMaintenance))} км.`
+            : `Заміна ${formatOdometer(String(nextMaintenance * -1))} км тому`}
+        </h5>
+      </div>
     </div>
   );
 };

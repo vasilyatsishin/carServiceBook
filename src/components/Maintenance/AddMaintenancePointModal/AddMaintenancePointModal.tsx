@@ -6,6 +6,7 @@ import { odometorValidator } from "../../../shared/helpers/validators/addCarVali
 import { formatOdometer } from "../../../shared/helpers/formatters/carFormatter";
 import SaveButton from "../../../shared/components/SaveButton/SaveButton";
 import { useParams } from "react-router";
+import Checkbox from "../../../shared/components/Checkbox/Checkbox";
 
 interface AddMaintenancePointModalProps {
   visible: boolean;
@@ -56,15 +57,14 @@ const AddMaintenancePointModal: React.FC<AddMaintenancePointModalProps> = ({
             }
           />
           <div className={styles.fullsizeWrapper}>
-            <label className={styles.label}>
-              <input
-                type="checkbox"
-                name="forallcars"
-                onChange={(e) => setters.setAddToAllCars(e.target.checked)}
-                className={styles.checkbox}
-              />
-              Застосувати для всіх авто
-            </label>
+            <Checkbox
+              handleChoose={(e) => setters.setAddToAllCars(e.target.checked)}
+              label="Застосувати для всіх авто"
+            />
+            <Checkbox
+              handleChoose={(e) => setters.setRegular(e.target.checked)}
+              label="Регулярне обслуговування"
+            />
           </div>
 
           <SaveButton

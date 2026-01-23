@@ -18,6 +18,12 @@ export const getCars = async (): Promise<CarReceivingObject[]> => {
   }));
 };
 
+// GET
+export const getCarById = async (id: number): Promise<CarReceivingObject> => {
+  const res = await api.get<CarReceivingObject>(API_CONSTANTS.CARS.CARS + id);
+  return res.data;
+};
+
 // POST
 export const addCar = async (car: CarEntity): Promise<CarEntity> => {
   const formData = new FormData();

@@ -6,7 +6,6 @@
 
 .mainWrapperMaintenance {
   width: 95%;
-  height: 60px;
   margin-bottom: 45px;
 }
 
@@ -17,8 +16,11 @@
   border-bottom: 1px solid black;
   outline: 0;
   font-size: 15px;
+  font-family: "Montserrat";
+  font-weight: 400;
   transition: border ease 0.25s;
   margin-top: 5px;
+  padding: 0;
 }
 
 .input:focus {

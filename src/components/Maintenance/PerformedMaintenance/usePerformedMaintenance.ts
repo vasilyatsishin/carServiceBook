@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const useNextMaintenance = () => {
+export const usePerformedMaintenance = () => {
   const [isModalShown, setIsModalShown] = useState<boolean>(false);
 
   return {

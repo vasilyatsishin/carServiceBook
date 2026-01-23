@@ -2,10 +2,10 @@ import type React from "react";
 import Input from "../../../shared/components/Input/Input";
 import { useAddCarForm } from "./useAddCarForm";
 import styles from "./AddCarForm.module.css";
-import PhotoInput from "../../../shared/PhotoInput/PhotoInput";
 import SaveButton from "../../../shared/components/SaveButton/SaveButton";
 import { odometorValidator } from "../../../shared/helpers/validators/addCarValidator";
 import { formatOdometer } from "../../../shared/helpers/formatters/carFormatter";
+import PhotoInput from "../../../shared/components/PhotoInput/PhotoInput";
 
 const AddCarForm: React.FC = () => {
   const { setters, state, handlers } = useAddCarForm();
@@ -17,6 +17,7 @@ const AddCarForm: React.FC = () => {
           placeholder="Додайте фото вашого авто"
           data={state.photo}
         />
+
         <Input
           data={state.carName}
           setData={setters.setCarName}
@@ -40,6 +41,7 @@ const AddCarForm: React.FC = () => {
           }
           variant="addCar"
         />
+
         <SaveButton
           submitHandler={handlers.handleSubmit}
           isActive={state.isSendButtonActive}

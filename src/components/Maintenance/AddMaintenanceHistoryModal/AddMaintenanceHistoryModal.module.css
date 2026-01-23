@@ -50,7 +50,33 @@
   opacity: 1;
 }
 
+.label {
+  font-size: 16px;
+  margin: 0;
+  font-weight: 600;
+}
+
 .fullsizeWrapper {
   width: 95%;
   margin-bottom: 45px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox {
+  accent-color: var(--yellow-color);
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  margin-right: 10px;
+}
+
+.spaceBetweenWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px; /* Додає фіксовану відстань, щоб вони не злипалися на малих екранах */
 }

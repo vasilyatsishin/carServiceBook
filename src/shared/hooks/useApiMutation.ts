@@ -1,0 +1,32 @@
+import {
+  useMutation,
+  useQueryClient,
+  type MutationFunction,
+} from "@tanstack/react-query";
+
+interface useApiMutationOptions<TVariables, TResult> {
+  mutationFn: MutationFunction<TResult, TVariables>; // функція мутації
+  invalidateKeys?: Array<readonly unknown[]>;
+  onSuccessCallback?: (data: TResult) => void;
+}
+
+export const useApiMutation = <TVariables, TResult>({
+  mutationFn,
+  invalidateKeys,
+  onSuccessCallback,
+}: useApiMutationOptions<TVariables, TResult>) => {
+  const queryClient = useQueryClient();
+
+  return useMutation<TResult, unknown, TVariables>({
+    mutationFn,
+    onSuccess: (data) => {
+      invalidateKeys?.forEach((key) => {
+        queryClient.invalidateQueries({ queryKey: key });
+      });
+      if (onSuccessCallback) onSuccessCallback(data);
+    },
+    onError: (error) => {
+      console.error("Помилка при виконанні мутації:", error);
+    },
+  });
+};

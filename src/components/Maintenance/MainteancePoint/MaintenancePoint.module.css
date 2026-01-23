@@ -20,9 +20,35 @@
   background-color: var(--yellow-color);
   border-radius: 12px;
   height: 7px;
+  animation: moveProgress 0.7s ease-out forwards; /* анімація зміни ширини */
 }
 
 .name,
 .interval {
   margin-bottom: 10px;
+}
+
+.interval {
+  display: flex;
+  align-items: flex-end;
+}
+
+.description {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.nextMaintenance {
+  text-align: right;
+  margin-top: 10px;
+}
+
+@keyframes moveProgress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: var(--target-width); /* кінцева ширина */
+  }
 }

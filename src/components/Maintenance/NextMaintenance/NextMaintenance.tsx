@@ -4,8 +4,15 @@ import AddIcon from "@mui/icons-material/Add";
 import AddMaintenancePointModal from "../AddMaintenancePointModal/AddMaintenancePointModal";
 import { useNextMaintenance } from "./useNextMaintenance";
 import MaintenancePoint from "../MainteancePoint/MaintenancePoint";
+import type { NextMaintenanceObject } from "../../../interfaces/Maintenance/MaintenanceJobInterface";
 
-const NextMaintenance: React.FC = () => {
+interface NextMaintenanceProps {
+  nextMaintenances: NextMaintenanceObject[];
+}
+
+const NextMaintenance: React.FC<NextMaintenanceProps> = ({
+  nextMaintenances,
+}) => {
   const { setters, state } = useNextMaintenance();
   return (
     <>
@@ -19,12 +26,13 @@ const NextMaintenance: React.FC = () => {
             <AddIcon sx={{ fontSize: 25 }} />
           </button>
         </div>
-        {state.existMaintenanceTypeJobs.map((e) => (
+        {nextMaintenances.map((e) => (
           <>
             <MaintenancePoint
+              key={e.jobId + e.jobName}
               interval={e.frequency}
-              maintenanceName={e.name}
-              nextMaintenance={e.frequency - 23425}
+              maintenanceName={e.jobName}
+              nextMaintenance={e.kmRemaining}
             />
           </>
         ))}

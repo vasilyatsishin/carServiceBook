@@ -5,12 +5,16 @@ export const BASE_URL = "http://localhost:8080/api";
 
 const api: AxiosInstance = axios.create({
   baseURL: BASE_URL,
+  timeout: 30000,
 });
 
 // Інтерсептор для обробки помилок
 api.interceptors.response.use(
   (response) => response,
   (error: AxiosError<any>) => {
+    if (error.code === "ECONNABORTED") {
+      return Promise.reject("Сервер не відповів протягом 30 секунд");
+    }
     const message = error.response?.data?.message || "Сталася системна помилка";
     return Promise.reject(message);
   }

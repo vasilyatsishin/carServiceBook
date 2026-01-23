@@ -1,0 +1,33 @@
+.mainWrapper {
+  width: 100%;
+}
+
+.headerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 0;
+  transition: color ease 0.3s;
+}
+
+.addButton:hover {
+  color: var(--yellow-color);
+  transition: color ease 0.3s;
+}
+
+.header {
+  font-weight: 800;
+}
+
+.rowWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

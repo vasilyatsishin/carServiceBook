@@ -13,3 +13,8 @@ body {
   font-family: "Montserrat";
   src: url("./assets/font/Montserrat/Montserrat-Regular.ttf");
 }
+
+@font-face {
+  font-family: "Montserrat-Bold";
+  src: url("./assets/font/Montserrat/Montserrat-Bold.ttf");
+}

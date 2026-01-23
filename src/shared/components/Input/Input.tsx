@@ -8,7 +8,7 @@ interface InputProps {
   data: string;
   setData: (value: string) => void;
   validator?: (value: string) => string | null;
-  variant: "addCar" | "addMaintenance";
+  variant: "addCar" | "addMaintenance" | "priceInput";
 }
 
 const Input: React.FC<InputProps> = ({
@@ -41,6 +41,7 @@ const Input: React.FC<InputProps> = ({
             ? styles.mainWrapper
             : styles.mainWrapperMaintenance
         }
+        style={{ width: variant === "priceInput" ? "35%" : "" }}
       >
         <p className={styles.label}>{label}</p>
         <input
