@@ -17,6 +17,7 @@ const PerformedMaintenance: React.FC<PerformedMaintenanceProps> = ({
   performedMaintenances,
 }) => {
   const { setters, state } = usePerformedMaintenance();
+
   return (
     <>
       <div className={styles.mainWrapper}>
@@ -29,22 +30,24 @@ const PerformedMaintenance: React.FC<PerformedMaintenanceProps> = ({
             <AddIcon sx={{ fontSize: 25 }} />
           </button>
         </div>
-        {performedMaintenances
-          .slice()
-          .sort((a, b) => b.odometer - a.odometer)
-          .map((e) => (
-            <>
-              <div className={styles.rowWrapper}>
-                <h2>{e.place}</h2>
-                <h3>{e.date}</h3>
-              </div>
-              <div className={styles.rowWrapper}>
-                <p>Пробіг: {formatOdometer(e.odometer.toString())} км.</p>
-                <p>Ціна: {e.price} грн.</p>
-              </div>
-              <hr />
-            </>
-          ))}
+        <div className={styles.scrollContainer}>
+          {performedMaintenances
+            .slice()
+            .sort((a, b) => b.odometer - a.odometer)
+            .map((e) => (
+              <>
+                <div className={styles.rowWrapper}>
+                  <h2 className={styles.performingPlace}>{e.place}</h2>
+                  <h3 className={styles.datePerformed}>{e.date}</h3>
+                </div>
+                <div className={styles.rowWrapper}>
+                  <p>Пробіг: {formatOdometer(e.odometer.toString())} км.</p>
+                  <p>Ціна: {e.price} грн.</p>
+                </div>
+                <hr />
+              </>
+            ))}
+        </div>
       </div>
       <AddMaintenanceHistoryModal
         maintenanceList={maintenanceList}

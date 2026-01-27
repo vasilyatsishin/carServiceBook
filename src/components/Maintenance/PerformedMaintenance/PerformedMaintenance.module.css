@@ -31,3 +31,42 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.performingPlace {
+  /* flex-wrap: wrap; */
+  margin-right: 15px; /* Відступ, щоб не злипалося з датою */
+  word-wrap: break-word
+}
+
+.datePerformed {
+  flex-shrink: 0; /* ЗАБОРОНЯЄМО даті стискатися */
+  white-space: nowrap; /* ЗАБОРОНЯЄМО даті переноситися на новий рядок */
+  text-align: right;
+}
+
+.scrollContainer {
+  width: 100%;
+  max-height: 400px; /* Висота, після якої з'явиться скрол */
+  overflow-y: auto;  /* Вертикальний скрол */
+  padding-right: 10px; /* Відступ під полосу прокрутки, щоб не перекривала текст */
+}
+
+/* Кастомізація скролбару, щоб виглядав по-людськи (для Chrome/Safari) */
+.scrollContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollContainer::-webkit-scrollbar-thumb {
+  background-color: var(--yellow-color, #ffcc00); /* Твій фірмовий колір */
+  border-radius: 10px;
+}
+
+.scrollContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+@media(min-width: 1900px) {
+  .scrollContainer {
+    max-height: 600px;
+  }
+}

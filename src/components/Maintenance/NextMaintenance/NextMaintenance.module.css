@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+.mainWrapper {
+  margin-bottom: 45px;
+}
+
 .addButton {
   display: flex;
   align-items: center;
@@ -20,4 +24,25 @@
 
 .header {
   font-weight: 800;
+}
+
+.scrollContainer {
+  width: 100%;
+  max-height: 400px; /* Висота, після якої з'явиться скрол */
+  overflow-y: auto;  /* Тільки вертикальний скрол */
+  padding-right: 8px; /* Місце для скролбару */
+}
+
+/* Кастомізація скролу (опціонально, але для ноута буде гарніше) */
+.scrollContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollContainer::-webkit-scrollbar-thumb {
+  background-color: var(--yellow-color); /* Твій жовтий колір */
+  border-radius: 10px;
+}
+
+.scrollContainer::-webkit-scrollbar-track {
+  background: transparent;
 }

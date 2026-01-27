@@ -12,6 +12,9 @@
   background-color: rgba(0, 0, 0, 0);
   pointer-events: none;
   transition: background-color 300ms ease;
+  overflow: auto;
+  position: fixed;
+  inset: 0;
 }
 
 .overlay[data-visible="true"] {
@@ -20,8 +23,8 @@
 }
 
 .mainWrapper {
-  width: 50%;
-  height: 45vh;
+  width: 65%;
+  height: auto;
   background-color: white;
   border-radius: 12px;
   transform: scale(0.95);
@@ -31,17 +34,6 @@
   padding-bottom: 45px;
   flex-direction: column;
   align-items: center;
-}
-
-.overlay {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0);
-  pointer-events: none;
-  transition: background-color 300ms ease;
 }
 
 .overlay[data-visible="true"] .mainWrapper {
@@ -78,5 +70,5 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  gap: 20px; /* Додає фіксовану відстань, щоб вони не злипалися на малих екранах */
+  gap: 20px;
 }

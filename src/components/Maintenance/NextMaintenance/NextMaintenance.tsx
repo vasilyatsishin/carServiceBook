@@ -26,16 +26,18 @@ const NextMaintenance: React.FC<NextMaintenanceProps> = ({
             <AddIcon sx={{ fontSize: 25 }} />
           </button>
         </div>
-        {nextMaintenances.map((e) => (
-          <>
-            <MaintenancePoint
-              key={e.jobId + e.jobName}
-              interval={e.frequency}
-              maintenanceName={e.jobName}
-              nextMaintenance={e.kmRemaining}
-            />
-          </>
-        ))}
+        <div className={styles.scrollContainer}>
+          {nextMaintenances.map((e) => (
+            <>
+              <MaintenancePoint
+                key={e.jobId + e.jobName}
+                interval={e.frequency}
+                maintenanceName={e.jobName}
+                nextMaintenance={e.kmRemaining}
+              />
+            </>
+          ))}
+        </div>
       </div>
       <AddMaintenancePointModal
         visible={state.isModalShown}

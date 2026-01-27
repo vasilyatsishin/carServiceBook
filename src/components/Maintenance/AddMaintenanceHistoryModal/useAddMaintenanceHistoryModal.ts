@@ -35,9 +35,9 @@ export const useAddMaintenanceHistoryModal = ({
       parseOdometerIntoNumber(odometer) >= carObject.odometer &&
       performedMaintenances.length > 0 &&
       date != null &&
-      price != null;
+      price != "";
     setIsSendButtonActive(isFormValid);
-  }, [performedMaintenances, odometer, place, date]);
+  }, [performedMaintenances, odometer, place, date, price]);
 
   const setToNull = () => {
     setPlace("");
