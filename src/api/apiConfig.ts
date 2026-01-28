@@ -1,8 +1,7 @@
 import type { AxiosError, AxiosInstance } from "axios";
 import axios from "axios";
 
-export const BASE_URL =
-  "https://servicebookbackend-production.up.railway.app/api";
+export const BASE_URL = import.meta.env.VITE_API_URL;
 
 const api: AxiosInstance = axios.create({
   baseURL: BASE_URL,
