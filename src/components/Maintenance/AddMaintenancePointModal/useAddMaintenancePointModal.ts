@@ -3,7 +3,6 @@ import { odometorValidator } from "../../../shared/helpers/validators/addCarVali
 import type { MaintenanceJobSendObject } from "../../../interfaces/Maintenance/MaintenanceJobInterface";
 import { addMaintenanceTypeJob } from "../../../services/maintenanceService";
 import { parseOdometerIntoNumber } from "../../../shared/helpers/formatters/carFormatter";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useApiMutation } from "../../../shared/hooks/useApiMutation";
 
 interface useAddMaintenancePointModalProps {
@@ -20,8 +19,6 @@ export const useAddMaintenancePointModal = ({
   const [addToAllCars, setAddToAllCars] = useState<boolean>(false);
   const [regular, setRegular] = useState<boolean>(false);
   const [isSendButtonActive, setIsSendButtonActive] = useState<boolean>(false);
-
-  const queryClient = useQueryClient();
 
   useEffect(() => {
     const isFormValid = name.trim().length >= 3 && odometorValidator(interval);

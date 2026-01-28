@@ -54,3 +54,9 @@
   width: 95%;
   margin-bottom: 45px;
 }
+
+@media (min-width: 1850px) {
+  .mainWrapper {
+    width: 50%;
+  }
+}
