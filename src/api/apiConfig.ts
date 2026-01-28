@@ -1,7 +1,8 @@
 import type { AxiosError, AxiosInstance } from "axios";
 import axios from "axios";
 
-export const BASE_URL = "http://localhost:8080/api";
+export const BASE_URL =
+  "https://servicebookbackend-production.up.railway.app//api";
 
 const api: AxiosInstance = axios.create({
   baseURL: BASE_URL,
