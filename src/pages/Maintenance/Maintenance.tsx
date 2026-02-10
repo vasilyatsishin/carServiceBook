@@ -2,8 +2,8 @@ import type React from "react";
 import styles from "./Maintenance.module.css";
 import NextMaintenance from "../../components/Maintenance/NextMaintenance/NextMaintenance";
 import { useMaintenance } from "./useMaintenance";
-import { formatOdometer } from "../../shared/helpers/formatters/carFormatter";
 import PerformedMaintenance from "../../components/Maintenance/PerformedMaintenance/PerformedMaintenance";
+import CarInfo from "../../components/Maintenance/CarInfo/CarInfo";
 
 const Maintenance: React.FC = () => {
   const { state } = useMaintenance();
@@ -16,10 +16,13 @@ const Maintenance: React.FC = () => {
     <>
       <div className={styles.mainWrapper}>
         <div className={styles.wrapperForMaintenanceBlocks}>
-          <h1 className={styles.carName}>{state.carObject.name}</h1>
-          <h4 className={styles.carOdometer}>
-            Пробіг: {formatOdometer(state.carObject.odometer.toString())} км.
-          </h4>
+          <CarInfo
+            carName={state.carObject.name}
+            handleOdometerChange={() => {
+              console.log(1);
+            }}
+            odometer={state.carObject.odometer}
+          />
           <div className={styles.paddingWrapper}>
             <div className={styles.horizontalWrapper}>
               <PerformedMaintenance

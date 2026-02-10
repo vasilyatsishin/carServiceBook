@@ -38,3 +38,9 @@
 .description {
   font-weight: 500;
 }
+
+.editIconWrapper,
+.navigationToMaintenance {
+  text-decoration: none;
+  color: black;
+}

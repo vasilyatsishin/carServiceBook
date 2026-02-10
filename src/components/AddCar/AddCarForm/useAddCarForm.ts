@@ -4,16 +4,29 @@ import {
   odometorValidator,
 } from "../../../shared/helpers/validators/addCarValidator";
 import { addCar } from "../../../services/carService";
-import type { CarEntity } from "../../../interfaces/Cars/CarInterface";
+import type {
+  CarEntity,
+  CarReceivingObject,
+} from "../../../interfaces/Cars/CarInterface";
 import { useNavigate } from "react-router";
+import { formatOdometer } from "../../../shared/helpers/formatters/carFormatter";
 
-export const useAddCarForm = () => {
+interface UseAddCarFormProps {
+  carInfo?: CarReceivingObject;
+}
+
+export const useAddCarForm = ({ carInfo }: UseAddCarFormProps) => {
   const [carName, setCarName] = useState<string>("");
   const [odometer, setOdometer] = useState<string>("");
-  const [photo, setPhoto] = useState<File | undefined>();
+  const [photo, setPhoto] = useState<File | undefined>(undefined);
   const [isSendButtonActive, setIsSendButtonActive] = useState<boolean>(true);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setCarName(carInfo?.name || "");
+    setOdometer(formatOdometer(carInfo?.odometer.toString() || ""));
+  }, []);
 
   const handleSubmit = async () => {
     try {

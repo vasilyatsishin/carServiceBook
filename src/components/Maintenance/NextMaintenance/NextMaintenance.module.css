@@ -29,7 +29,7 @@
 .scrollContainer {
   width: 100%;
   max-height: 400px; /* Висота, після якої з'явиться скрол */
-  overflow-y: auto;  /* Тільки вертикальний скрол */
+  overflow-y: auto; /* Тільки вертикальний скрол */
   padding-right: 8px; /* Місце для скролбару */
 }
 
@@ -45,4 +45,10 @@
 
 .scrollContainer::-webkit-scrollbar-track {
   background: transparent;
+}
+
+@media (min-width: 1900px) {
+  .scrollContainer {
+    max-height: 600px;
+  }
 }

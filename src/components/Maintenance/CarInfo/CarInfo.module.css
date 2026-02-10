@@ -1,0 +1,18 @@
+.carName {
+  font-family: "Montserrat-Bold";
+  font-weight: bolder;
+}
+
+.odometerWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.carOdometer {
+  margin-right: 10px;
+}
+
+.editButton {
+  background-color: inherit;
+  border: 0;
+}

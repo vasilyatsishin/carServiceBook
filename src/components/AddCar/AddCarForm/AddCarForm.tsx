@@ -6,9 +6,14 @@ import SaveButton from "../../../shared/components/SaveButton/SaveButton";
 import { odometorValidator } from "../../../shared/helpers/validators/addCarValidator";
 import { formatOdometer } from "../../../shared/helpers/formatters/carFormatter";
 import PhotoInput from "../../../shared/components/PhotoInput/PhotoInput";
+import type { CarReceivingObject } from "../../../interfaces/Cars/CarInterface";
 
-const AddCarForm: React.FC = () => {
-  const { setters, state, handlers } = useAddCarForm();
+interface AddCarFormProps {
+  carInfo?: CarReceivingObject;
+}
+
+const AddCarForm: React.FC<AddCarFormProps> = ({ carInfo }) => {
+  const { setters, state, handlers } = useAddCarForm({ carInfo });
   return (
     <>
       <div className={styles.mainWrapper}>

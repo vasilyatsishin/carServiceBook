@@ -12,6 +12,10 @@ const Router: React.FC = () => {
       <Route element={<ExistCars />} path={pathConstants.EXIST_CARS} />
       <Route element={<AddCar />} path={pathConstants.ADD_CAR} />
       <Route
+        element={<AddCar isEdit />}
+        path={`${pathConstants.EDIT_CAR}/:carId`}
+      />
+      <Route
         element={<Maintenance />}
         path={`${pathConstants.MAINTENANCE}/:carId`}
       />
