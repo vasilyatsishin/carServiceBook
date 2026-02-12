@@ -13,7 +13,7 @@ api.interceptors.response.use(
   (response) => response,
   (error: AxiosError<any>) => {
     if (error.code === "ECONNABORTED") {
-      return Promise.reject("Сервер не відповів протягом 30 секунд");
+      return Promise.reject("Отакої... Помилка отримання даних");
     }
     const message = error.response?.data?.message || "Сталася системна помилка";
     return Promise.reject(message);

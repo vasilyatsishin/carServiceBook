@@ -17,10 +17,7 @@ const Maintenance: React.FC = () => {
       <div className={styles.mainWrapper}>
         <div className={styles.wrapperForMaintenanceBlocks}>
           <CarInfo
-            carName={state.carObject.name}
-            handleOdometerChange={() => {
-              console.log(1);
-            }}
+            car={state.carObject}
             odometer={state.carObject.odometer}
           />
           <div className={styles.paddingWrapper}>

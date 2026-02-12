@@ -24,6 +24,13 @@ export const getCarById = async (id: number): Promise<CarReceivingObject> => {
   return res.data;
 };
 
+// PUT
+
+export const updateOdometer = async (carId: number, newOdometer: number): Promise<String> => {
+  const res = await api.patch<String>(`${API_CONSTANTS.CARS.UPDATE_ODOMETER}?carId=${carId}&newOdometer=${newOdometer}`);
+  return res.data;
+};
+
 // POST
 export const addCar = async (car: CarEntity): Promise<CarEntity> => {
   const formData = new FormData();

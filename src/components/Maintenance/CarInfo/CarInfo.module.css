@@ -9,10 +9,74 @@
 }
 
 .carOdometer {
-  margin-right: 10px;
+  margin: 0;
+  font-size: 16px;
+  margin: 15px 0;
 }
 
 .editButton {
   background-color: inherit;
   border: 0;
+  display: flex;
+  align-items: center;
+}
+
+.carOdometerChangeInput {
+  border: 0;
+  border-bottom: 1px solid black;
+  outline: none;
+  font-family: 'Montserrat';
+  font-size: 16px;
+  font-weight: bolder;
+  letter-spacing: 1px;
+  margin: 0 0;
+}
+
+.inputWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.carOdometerChangeInput {
+  padding: 12px 8px 6px 8px;
+  font-size: 16px;
+}
+
+.floatingLabel {
+  position: absolute;
+  left: 0;
+  top: 12px;
+  font-family: 'Montserrat';
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: gray;
+  pointer-events: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.carOdometerChangeInput:focus ~ .floatingLabel,
+.carOdometerChangeInput:not(:placeholder-shown) ~ .floatingLabel,
+.shrink {
+  top: -15px;
+  font-size: 12px;
+  color: black;
+}
+
+.inputWrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.inputError {
+  border-bottom: 1px solid red;
+}
+
+.errorText {
+  position: absolute;
+  left: 0;
+  bottom: -35px;
+  font-size: 12px;
+  color: red;
 }
