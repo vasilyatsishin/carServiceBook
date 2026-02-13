@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./PhotoInput.module.css";
+import { compressImage } from "../../helpers/compressPhoto";
 
 interface PhotoInputProps {
   placeholder: string;
@@ -15,9 +16,18 @@ const PhotoInput: React.FC<PhotoInputProps> = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string>("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files?.length) return;
-    setData(e.target.files[0]);
+
+    const file = e.target.files[0];
+
+    if (!file.type.startsWith("image/")) {
+      setData(file);
+      return;
+    }
+
+    const compressedFile = await compressImage(file, 800, 0.7);
+    setData(compressedFile);
   };
 
   useEffect(() => {

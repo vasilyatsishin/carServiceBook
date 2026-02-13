@@ -50,6 +50,7 @@ const AddCarForm: React.FC<AddCarFormProps> = ({ carInfo }) => {
         <SaveButton
           submitHandler={handlers.handleSubmit}
           isActive={state.isSendButtonActive}
+          fullWidth={false}
         />
       </div>
     </>

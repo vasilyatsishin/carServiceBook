@@ -9,7 +9,7 @@ import { parseOdometerIntoNumber } from "../shared/helpers/formatters/carFormatt
 // GET
 export const getCars = async (): Promise<CarReceivingObject[]> => {
   const res = await api.get<CarReceivingObject[]>(
-    API_CONSTANTS.CARS.GET_EXIST_CARS
+    API_CONSTANTS.CARS.GET_EXIST_CARS,
   );
   return res.data.map((car) => ({
     ...car,
@@ -26,8 +26,14 @@ export const getCarById = async (id: number): Promise<CarReceivingObject> => {
 
 // PUT
 
-export const updateOdometer = async (carId: number, newOdometer: number): Promise<String> => {
-  const res = await api.patch<String>(`${API_CONSTANTS.CARS.UPDATE_ODOMETER}?carId=${carId}&newOdometer=${newOdometer}`);
+export const updateOdometer = async (
+  carId: number,
+  newOdometer: number,
+): Promise<String> => {
+  const res = await api.patch<String>(
+    `${API_CONSTANTS.CARS.UPDATE_ODOMETER}?carId=${carId}&newOdometer=${newOdometer}`,
+  );
+
   return res.data;
 };
 
@@ -41,7 +47,7 @@ export const addCar = async (car: CarEntity): Promise<CarEntity> => {
 
   const res = await api.post<CarEntity>(
     API_CONSTANTS.CARS.CAR_CREATE,
-    formData
+    formData,
   );
   return res.data;
 };

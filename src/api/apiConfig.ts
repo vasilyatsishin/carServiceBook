@@ -16,8 +16,9 @@ api.interceptors.response.use(
       return Promise.reject("Отакої... Помилка отримання даних");
     }
     const message = error.response?.data?.message || "Сталася системна помилка";
+
     return Promise.reject(message);
-  }
+  },
 );
 
 export default api;

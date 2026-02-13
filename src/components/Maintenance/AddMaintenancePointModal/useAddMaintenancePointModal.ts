@@ -4,6 +4,7 @@ import type { MaintenanceJobSendObject } from "../../../interfaces/Maintenance/M
 import { addMaintenanceTypeJob } from "../../../services/maintenanceService";
 import { parseOdometerIntoNumber } from "../../../shared/helpers/formatters/carFormatter";
 import { useApiMutation } from "../../../shared/hooks/useApiMutation";
+import { QueryKeys } from "../../../interfaces/QueryKeys";
 
 interface useAddMaintenancePointModalProps {
   carId: string;
@@ -27,7 +28,7 @@ export const useAddMaintenancePointModal = ({
 
   const { mutate: addMaintenance, isPending } = useApiMutation({
     mutationFn: (data: MaintenanceJobSendObject) => addMaintenanceTypeJob(data),
-    invalidateKeys: [["maintenanceList", carId]],
+    invalidateKeys: [[QueryKeys.NEXT_MAINTENANCES_LIST, carId]],
     onSuccessCallback: () => {
       setIsVisible(false);
       setName("");

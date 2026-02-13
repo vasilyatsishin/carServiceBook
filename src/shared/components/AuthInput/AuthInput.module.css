@@ -1,0 +1,58 @@
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.labelForInput {
+    margin-bottom: 10px;
+}
+
+.input {
+    width: 100%;
+    height: 50px;
+    border-radius: 15px;
+    border: 1px solid;
+    border-color: black;
+    outline: none;
+    transition: 0.5s ease-in-out border-color;
+    padding: 0 15px;
+    font-size: 15px;
+}
+
+.input:focus {
+    border-color: var(--yellow-color);
+    transition: 0.25s ease-in-out border-color;
+}
+
+.inputError {
+    border-color: var(--red-error-color) !important;
+}
+
+.errorMessage {
+    color: #ff4d4f;
+    font-size: 12px;
+    margin-top: 4px;
+    margin-left: 10px;
+}
+
+.inputContainer {
+    position: relative;
+    /* Щоб іконка позиціонувалася відносно цього блоку */
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.iconWrapper {
+    position: absolute;
+    right: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    /* Щоб при частих кліках не виділявся текст */
+}

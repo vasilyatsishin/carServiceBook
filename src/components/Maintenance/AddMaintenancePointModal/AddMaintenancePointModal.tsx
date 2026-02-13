@@ -70,6 +70,7 @@ const AddMaintenancePointModal: React.FC<AddMaintenancePointModalProps> = ({
           <SaveButton
             submitHandler={handlers.handleSubmit}
             isActive={state.isSendButtonActive}
+            fullWidth={false}
           />
         </div>
       </div>

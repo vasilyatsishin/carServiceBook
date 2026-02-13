@@ -4,4 +4,6 @@ export const pathConstants = {
   EXIST_CARS: "/exist-cars",
   INITIAL_ROUTE: "/",
   MAINTENANCE: "/maintenance",
+  LOGIN: "/login",
+  REGISTER: "/register"
 };

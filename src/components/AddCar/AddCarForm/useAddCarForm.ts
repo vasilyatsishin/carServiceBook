@@ -26,7 +26,7 @@ export const useAddCarForm = ({ carInfo }: UseAddCarFormProps) => {
   useEffect(() => {
     setCarName(carInfo?.name || "");
     setOdometer(formatOdometer(carInfo?.odometer.toString() || ""));
-  }, []);
+  }, [carInfo]);
 
   const handleSubmit = async () => {
     try {

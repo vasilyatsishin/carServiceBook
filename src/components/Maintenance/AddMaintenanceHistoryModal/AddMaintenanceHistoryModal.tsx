@@ -102,6 +102,7 @@ const AddMaintenanceHistoryModal: React.FC<AddMaintenanceHistoryModalProps> = ({
           <SaveButton
             submitHandler={handlers.handleSubmit}
             isActive={state.isSendButtonActive}
+            fullWidth={false}
           />
         </div>
       </div>

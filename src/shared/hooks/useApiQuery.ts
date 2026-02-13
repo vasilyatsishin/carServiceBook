@@ -8,7 +8,7 @@ export const useApiQuery = <T>(
   const { data, isLoading, isError, refetch, isFetching } = useQuery<T, Error>({
     queryKey,
     queryFn,
-    staleTime: 5 * 60 * 1000, // Значення за замовчуванням
+    staleTime: 60 * 1000, // Значення за замовчуванням
     ...options, // Можна перевизначити будь-які налаштування
   });
 

@@ -8,6 +8,7 @@ import { getCarById } from "../../../services/carService";
 import { useApiQuery } from "../../../shared/hooks/useApiQuery";
 import type { MaintenanceHistorySendObject } from "../../../interfaces/Maintenance/PerformedMaintenanceInterface";
 import type { Dayjs } from "dayjs";
+import { QueryKeys } from "../../../interfaces/QueryKeys";
 
 interface useAddMaintenanceHistoryModalProps {
   carId: string;
@@ -61,9 +62,9 @@ export const useAddMaintenanceHistoryModal = ({
     mutationFn: (data: MaintenanceHistorySendObject) =>
       addMaintenanceHistory(data),
     invalidateKeys: [
-      ["maintenanceList", carId],
-      ["car", carId],
-      ["performedMaintenances", carId],
+      [QueryKeys.NEXT_MAINTENANCES_LIST, carId],
+      [QueryKeys.CAR, carId],
+      [QueryKeys.PERFORMED_MAINTENANCES, carId],
     ],
     onSuccessCallback: (data) => {
       setToNull();

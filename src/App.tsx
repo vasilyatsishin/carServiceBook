@@ -12,7 +12,6 @@ function App() {
     <>
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
-          <NavBar />
           <Router />
         </QueryClientProvider>
       </Provider>
