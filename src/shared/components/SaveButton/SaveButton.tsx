@@ -5,12 +5,16 @@ interface SaveButtonProps {
   submitHandler: () => void;
   isActive: boolean;
   fullWidth: boolean;
+  text?: string;
+  isLoading: boolean
 }
 
 const SaveButton: React.FC<SaveButtonProps> = ({
   submitHandler,
   isActive,
   fullWidth,
+  text = "Зберегти",
+  isLoading
 }) => {
   return (
     <>
@@ -22,7 +26,7 @@ const SaveButton: React.FC<SaveButtonProps> = ({
           style={{ width: fullWidth ? "100%" : "" }}
           disabled={!isActive}
         >
-          Зберегти
+          {isLoading ? "Завантаження..." : text}
         </button>
       </div>
     </>

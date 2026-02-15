@@ -74,6 +74,7 @@ export const useAddMaintenanceHistoryModal = ({
   });
 
   const handleSubmit = async () => {
+    if (isPending) return;
     await addMaintenance({
       carId: Number(carId),
       comment: "asdasd",

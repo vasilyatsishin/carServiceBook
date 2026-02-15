@@ -38,6 +38,9 @@ export const useAddMaintenancePointModal = ({
   });
 
   const handleSubmit = () => {
+    if (isPending) {
+      return
+    }
     const sendObject: MaintenanceJobSendObject = {
       name,
       interval: parseOdometerIntoNumber(interval),

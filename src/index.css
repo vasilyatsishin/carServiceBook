@@ -8,6 +8,7 @@ body {
 :root {
   --yellow-color: #dada11;
   --red-error-color: #ff4d4f;
+  --green-success-color: #1a771f;
 }
 
 @font-face {

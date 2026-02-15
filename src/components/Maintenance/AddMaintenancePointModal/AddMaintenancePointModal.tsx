@@ -71,6 +71,7 @@ const AddMaintenancePointModal: React.FC<AddMaintenancePointModalProps> = ({
             submitHandler={handlers.handleSubmit}
             isActive={state.isSendButtonActive}
             fullWidth={false}
+            isLoading={state.isLoading}
           />
         </div>
       </div>

@@ -103,6 +103,7 @@ const AddMaintenanceHistoryModal: React.FC<AddMaintenanceHistoryModalProps> = ({
             submitHandler={handlers.handleSubmit}
             isActive={state.isSendButtonActive}
             fullWidth={false}
+            isLoading={state.isLoading}
           />
         </div>
       </div>

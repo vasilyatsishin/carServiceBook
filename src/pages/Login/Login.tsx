@@ -4,6 +4,8 @@ import AuthInput from "../../shared/components/AuthInput/AuthInput";
 import { useLogin } from "./useLogin";
 import { InputTypes } from "../../interfaces/InputTypes";
 import SaveButton from "../../shared/components/SaveButton/SaveButton";
+import { NavLink } from "react-router-dom";
+import { pathConstants } from "../../constants/pathConstants";
 
 const Login: React.FC = () => {
   const state = useLogin();
@@ -25,6 +27,7 @@ const Login: React.FC = () => {
           value={state.password}
           type={InputTypes.PASSWORD}
         />
+        <NavLink to={pathConstants.REGISTER}>Ще не зареєстровані?</NavLink>
       </div>
       <div className={styles.formWrapper}>
         <SaveButton isActive submitHandler={() => {}} fullWidth />

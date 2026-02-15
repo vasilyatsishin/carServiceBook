@@ -5,6 +5,8 @@ import {
   validatePassword,
 } from "../../shared/helpers/validators/authValidator";
 import { register } from "../../services/authService";
+import { useToast } from "../../shared/providers/ToastProvider";
+import type { RegisterDTO } from "../../interfaces/AuthInterfaces";
 
 export const useRegister = () => {
   const [name, setName] = useState<string>("");
@@ -12,6 +14,8 @@ export const useRegister = () => {
   const [password, setPassword] = useState<string>("");
   const [passwordConfirm, setPasswordConfirm] = useState<string>("");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const toast = useToast();
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
@@ -37,13 +41,29 @@ export const useRegister = () => {
   };
 
   const handleSubmit = async () => {
+    if (isLoading) return;
+
+    setIsLoading(true);
     const isFormValid = validate();
     if (!isFormValid) {
+      setIsLoading(false)
       return;
     }
+
+    const payload: RegisterDTO = {
+      email,
+      name,
+      password,
+    };
+
     try {
-      await register();
-    } catch (error) {}
+      await register(payload);
+      toast("Успішна реєстрація", "success");
+    } catch (error: any) {
+      toast(error, "error");
+    } finally {
+      setIsLoading(false)
+    }
   };
 
   return {
@@ -53,6 +73,7 @@ export const useRegister = () => {
     password,
     passwordConfirm,
     errors,
+    isLoading,
 
     // setters
     setName,

@@ -4,6 +4,8 @@ import AuthInput from "../../shared/components/AuthInput/AuthInput";
 import { useRegister } from "./useRegister";
 import { InputTypes } from "../../interfaces/InputTypes";
 import SaveButton from "../../shared/components/SaveButton/SaveButton";
+import { NavLink } from "react-router-dom";
+import { pathConstants } from "../../constants/pathConstants";
 
 const Register: React.FC = () => {
   const state = useRegister();
@@ -42,9 +44,10 @@ const Register: React.FC = () => {
           type={InputTypes.PASSWORD}
           error={state.errors.passwordConfirm}
         />
+        <NavLink to={pathConstants.LOGIN}>Вже зареєстровані?</NavLink>
       </div>
       <div className={styles.formWrapper}>
-        <SaveButton isActive submitHandler={state.handleSubmit} fullWidth />
+        <SaveButton isActive submitHandler={state.handleSubmit} fullWidth isLoading={state.isLoading}/>
       </div>
     </div>
   );

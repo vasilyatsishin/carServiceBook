@@ -20,6 +20,7 @@ export const useAddCarForm = ({ carInfo }: UseAddCarFormProps) => {
   const [odometer, setOdometer] = useState<string>("");
   const [photo, setPhoto] = useState<File | undefined>(undefined);
   const [isSendButtonActive, setIsSendButtonActive] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const navigate = useNavigate();
 
@@ -29,6 +30,7 @@ export const useAddCarForm = ({ carInfo }: UseAddCarFormProps) => {
   }, [carInfo]);
 
   const handleSubmit = async () => {
+    setIsLoading(true)
     try {
       const sendObject: CarEntity = {
         name: carName,
@@ -39,6 +41,8 @@ export const useAddCarForm = ({ carInfo }: UseAddCarFormProps) => {
       navigate("/exist-cars");
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -57,6 +61,7 @@ export const useAddCarForm = ({ carInfo }: UseAddCarFormProps) => {
       odometer,
       photo,
       isSendButtonActive,
+      isLoading
     },
     setters: {
       setCarName,
