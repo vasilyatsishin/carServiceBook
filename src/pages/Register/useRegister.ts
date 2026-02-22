@@ -7,6 +7,7 @@ import {
 import { register } from "../../services/authService";
 import { useToast } from "../../shared/providers/ToastProvider";
 import type { RegisterDTO } from "../../interfaces/AuthInterfaces";
+import { useNavigate } from "react-router-dom";
 
 export const useRegister = () => {
   const [name, setName] = useState<string>("");
@@ -15,6 +16,9 @@ export const useRegister = () => {
   const [passwordConfirm, setPasswordConfirm] = useState<string>("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const navigate = useNavigate();
+
   const toast = useToast();
 
   const validate = () => {
@@ -46,7 +50,7 @@ export const useRegister = () => {
     setIsLoading(true);
     const isFormValid = validate();
     if (!isFormValid) {
-      setIsLoading(false)
+      setIsLoading(false);
       return;
     }
 
@@ -57,12 +61,19 @@ export const useRegister = () => {
     };
 
     try {
-      await register(payload);
+      const response = await register(payload);
+
+      if (response) {
+        localStorage.setItem("access", response);
+      }
+
+      navigate("/exist-cars");
+
       toast("Успішна реєстрація", "success");
     } catch (error: any) {
       toast(error, "error");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 

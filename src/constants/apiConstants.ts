@@ -1,6 +1,8 @@
 export const API_CONSTANTS = {
   AUTH: {
     REGISTER: "/auth/register",
+    LOG_OUT: "/auth/logout",
+    LOG_IN: "/auth/login",
   },
   CARS: {
     CARS: "/cars/",

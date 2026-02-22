@@ -20,6 +20,7 @@ const Login: React.FC = () => {
           value={state.email}
           type={InputTypes.EMAIL}
           placeholder="your.name@gmail.com"
+          error={state.errors.email}
         />
         <AuthInput
           label="Пароль"
@@ -30,7 +31,12 @@ const Login: React.FC = () => {
         <NavLink to={pathConstants.REGISTER}>Ще не зареєстровані?</NavLink>
       </div>
       <div className={styles.formWrapper}>
-        <SaveButton isActive submitHandler={() => {}} fullWidth />
+        <SaveButton
+          isActive
+          submitHandler={state.handleSubmit}
+          fullWidth
+          isLoading={state.isLoading}
+        />
       </div>
     </div>
   );
