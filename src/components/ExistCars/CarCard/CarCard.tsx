@@ -5,6 +5,7 @@ import { formatOdometer } from "../../../shared/helpers/formatters/carFormatter"
 import { NavLink } from "react-router-dom";
 import { pathConstants } from "../../../constants/pathConstants";
 import EditIcon from "@mui/icons-material/ModeEdit";
+import DeleteIcon from "@mui/icons-material/DeleteOutline";
 
 interface CarCardProps {
   car: CarReceivingObject;
@@ -24,12 +25,21 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
             Пробіг: {formatOdometer(car.odometer.toString())} км.
           </h2>
         </div>
-      </NavLink>
-      <NavLink
-        to={`${pathConstants.EDIT_CAR}/${car.id}`}
-        className={styles.editIconWrapper}
-      >
-        <EditIcon />
+        <div className={styles.actionsWrapper}>
+          <NavLink
+            to={`${pathConstants.EDIT_CAR}/${car.id}`}
+            className={styles.editIconWrapper}
+          >
+            <EditIcon fontSize="small" />
+          </NavLink>
+
+          <NavLink
+            to={`${pathConstants.EDIT_CAR}/${car.id}`}
+            className={styles.editIconWrapper}
+          >
+            <DeleteIcon fontSize="small" />
+          </NavLink>
+        </div>
       </NavLink>
     </div>
   );

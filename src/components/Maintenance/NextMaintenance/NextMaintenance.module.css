@@ -4,10 +4,6 @@
   align-items: center;
 }
 
-.mainWrapper {
-  margin-bottom: 45px;
-}
-
 .addButton {
   display: flex;
   align-items: center;

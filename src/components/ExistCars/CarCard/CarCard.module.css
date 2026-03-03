@@ -10,6 +10,7 @@
   transition: box-shadow ease 0.5s;
   text-decoration: none;
   color: black;
+  position: relative;
 }
 
 .mainWrapper:hover {
@@ -43,4 +44,15 @@
 .navigationToMaintenance {
   text-decoration: none;
   color: black;
+}
+
+.actionsWrapper {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  /* display: flex; */
+  gap: 8px;
+  /* відстань між іконками */
+  z-index: 10;
+  /* щоб кнопки були над текстом/картинкою */
 }
