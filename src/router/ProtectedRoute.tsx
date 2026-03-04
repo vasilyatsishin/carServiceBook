@@ -12,9 +12,20 @@ const ProtectedRoute = () => {
 
   const checkAuth = async () => {
     const token = localStorage.getItem("access");
+    const isManual = localStorage.getItem("manual_logout");
+  
     if (!token) {
       setIsAuthenticated(false);
-      toast("Сесія користувача закінчилась", "error");
+      
+      // Показуємо помилку ТІЛЬКИ якщо користувач не вийшов сам
+      if (!isManual) {
+        toast("Сесія користувача закінчилась", "error");
+      } else {
+        toast("Успішний вихід")
+      }
+      
+      // Очищуємо маркер і робимо логаут
+      localStorage.removeItem("manual_logout");
       await logout();
     }
   };

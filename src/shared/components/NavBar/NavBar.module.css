@@ -12,11 +12,26 @@
   color: black;
   text-decoration: none;
   transition: color ease 0.3s;
+  background-color: inherit;
 }
 
 .navlink:hover {
   color: var(--yellow-color);
   transition: color ease 0.3s;
+}
+
+.logout {
+  color: var(--red-error-color);
+  transition: color ease 0.3s;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 0;
+  background-color: initial;
+  font-family: "Montserrat";
+  font-size: 15px;
+  cursor: pointer;
 }
 
 .yellowContainerNavlink {
