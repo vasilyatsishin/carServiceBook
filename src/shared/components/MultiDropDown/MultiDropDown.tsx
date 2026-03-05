@@ -34,6 +34,10 @@ const MultiDropDown: React.FC<MultiDropDownProps> = ({
         })) || []
       }
       styles={{
+        container: (provided) => ({
+          ...provided,
+          width: "100%"
+        }),
         control: (provided, state) => ({
           ...provided,
           border: 0,

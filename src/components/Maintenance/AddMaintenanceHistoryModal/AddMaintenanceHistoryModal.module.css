@@ -73,6 +73,16 @@
   gap: 20px;
 }
 
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.button {
+  border: 0;
+}
+
 @media (min-width: 1850px) {
   .mainWrapper {
     width: 50%;

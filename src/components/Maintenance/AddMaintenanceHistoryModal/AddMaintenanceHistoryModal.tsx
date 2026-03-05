@@ -12,6 +12,8 @@ import { useParams } from "react-router";
 import type { NextMaintenanceObject } from "../../../interfaces/Maintenance/MaintenanceJobInterface";
 import MultiDropDown from "../../../shared/components/MultiDropDown/MultiDropDown";
 import DatePicker from "../../../shared/components/DatePicker/DatePicker";
+import AddMaintenancePointModal from "../AddMaintenancePointModal/AddMaintenancePointModal";
+import AddIcon from "@mui/icons-material/Add";
 
 interface AddMaintenanceHistoryModalProps {
   visible: boolean;
@@ -69,14 +71,19 @@ const AddMaintenanceHistoryModal: React.FC<AddMaintenanceHistoryModalProps> = ({
           />
           <div className={styles.fullsizeWrapper} style={{ marginBottom: 15 }}>
             <p className={styles.label}>Роботи</p>
-            <MultiDropDown
-              chosenValues={state.performedMaintenances}
-              setChosenValue={setters.setPerformedMaintenances}
-              values={maintenanceList.map((e) => ({
-                label: e.jobName,
-                value: e.jobId,
-              }))}
-            />
+            <div className={styles.row}>
+              <MultiDropDown
+                chosenValues={state.performedMaintenances}
+                setChosenValue={setters.setPerformedMaintenances}
+                values={maintenanceList.map((e) => ({
+                  label: e.jobName,
+                  value: e.jobId,
+                }))}
+              />
+              <a onClick={() => setters.setIsAddPointModalVisible(true)} className={styles.buttonAdd}>
+                <AddIcon />
+              </a>
+            </div>
           </div>
           <div className={styles.fullsizeWrapper} style={{ marginBottom: 15 }}>
             <div className={styles.spaceBetweenWrapper}>
@@ -107,6 +114,10 @@ const AddMaintenanceHistoryModal: React.FC<AddMaintenanceHistoryModalProps> = ({
           />
         </div>
       </div>
+      <AddMaintenancePointModal
+        setIsVisible={setters.setIsAddPointModalVisible}
+        visible={state.isAddPointModalVisible}
+      />
     </>
   );
 };

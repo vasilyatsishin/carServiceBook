@@ -28,6 +28,7 @@ export const useAddMaintenanceHistoryModal = ({
   const [price, setPrice] = useState<string>("");
 
   const [isSendButtonActive, setIsSendButtonActive] = useState<boolean>(false);
+  const [isAddPointModalVisible, setIsAddPointModalVisible] = useState<boolean>(false);
 
   useEffect(() => {
     const isFormValid =
@@ -96,6 +97,7 @@ export const useAddMaintenanceHistoryModal = ({
       car: carObject,
       date,
       price,
+      isAddPointModalVisible
     },
     setters: {
       setPlace,
@@ -103,6 +105,7 @@ export const useAddMaintenanceHistoryModal = ({
       setPerformedMaintenances,
       setDate,
       setPrice,
+      setIsAddPointModalVisible
     },
     handlers: {
       handleSubmit,
