@@ -44,6 +44,8 @@
 .navigationToMaintenance {
   text-decoration: none;
   color: black;
+  border: 0;
+  background-color: inherit;
 }
 
 .actionsWrapper {

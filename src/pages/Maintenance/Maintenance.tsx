@@ -4,22 +4,20 @@ import NextMaintenance from "../../components/Maintenance/NextMaintenance/NextMa
 import { useMaintenance } from "./useMaintenance";
 import PerformedMaintenance from "../../components/Maintenance/PerformedMaintenance/PerformedMaintenance";
 import CarInfo from "../../components/Maintenance/CarInfo/CarInfo";
+import Loader from "../../shared/components/Loader/Loader";
 
 const Maintenance: React.FC = () => {
   const { state } = useMaintenance();
 
   if (state.isLoading) {
-    return <div>Завантаження...</div>;
+    return <Loader visible={state.isLoading} />;
   }
 
   return (
     <>
       <div className={styles.mainWrapper}>
         <div className={styles.wrapperForMaintenanceBlocks}>
-          <CarInfo
-            car={state.carObject}
-            odometer={state.carObject.odometer}
-          />
+          <CarInfo car={state.carObject} odometer={state.carObject.odometer} />
           <div className={styles.paddingWrapper}>
             <div className={styles.horizontalWrapper}>
               <PerformedMaintenance

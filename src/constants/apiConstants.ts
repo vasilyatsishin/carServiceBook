@@ -9,6 +9,8 @@ export const API_CONSTANTS = {
     CAR_CREATE: "/cars/create",
     GET_EXIST_CARS: "/cars/exist-cars",
     UPDATE_ODOMETER: "/cars/update/odometer",
+    DELETE_CAR: "/cars/delete",
+    UPDATE_CAR: "/cars/update",
   },
   MAINTENANCE_JOBS: {
     MAINTENANCE_CREATE: "/maintenance-jobs/create",

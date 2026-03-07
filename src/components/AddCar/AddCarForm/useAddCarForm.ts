@@ -3,13 +3,15 @@ import {
   isPhotoValid,
   odometorValidator,
 } from "../../../shared/helpers/validators/addCarValidator";
-import { addCar } from "../../../services/carService";
+// Додаємо updateCar (або як він у вас називається)
+import { addCar, updateCar } from "../../../services/carService";
 import type {
   CarEntity,
   CarReceivingObject,
 } from "../../../interfaces/Cars/CarInterface";
 import { useNavigate } from "react-router";
 import { formatOdometer } from "../../../shared/helpers/formatters/carFormatter";
+import { BASE_DOMAIN_NAME} from "../../../api/apiConfig";
 
 interface UseAddCarFormProps {
   carInfo?: CarReceivingObject;
@@ -18,31 +20,47 @@ interface UseAddCarFormProps {
 export const useAddCarForm = ({ carInfo }: UseAddCarFormProps) => {
   const [carName, setCarName] = useState<string>("");
   const [odometer, setOdometer] = useState<string>("");
-  const [photo, setPhoto] = useState<File | undefined>(undefined);
-  const [isSendButtonActive, setIsSendButtonActive] = useState<boolean>(true);
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  // 1. Змінюємо тип стейту: тепер тут може бути і File, і string (URL)
+  const [photo, setPhoto] = useState<File | string | undefined>(undefined);
+  const [isSendButtonActive, setIsSendButtonActive] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    setCarName(carInfo?.name || "");
-    setOdometer(formatOdometer(carInfo?.odometer.toString() || ""));
+    if (carInfo) {
+      setCarName(carInfo.name);
+      setOdometer(formatOdometer(carInfo.odometer.toString()));
+      setPhoto(BASE_DOMAIN_NAME + carInfo.photoUrl);
+    }
   }, [carInfo]);
 
   const handleSubmit = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
+      // Очищуємо пробіг від крапок перед відправкою, якщо бекенд чекає число
+      const cleanOdometer = odometer.replace(/\./g, "");
+
       const sendObject: CarEntity = {
+        ...(carInfo?.id && { id: carInfo.id }),
         name: carName,
-        odometer,
-        photo: photo,
+        odometer: cleanOdometer,
+        photo: photo instanceof File ? photo : undefined,
       };
-      await addCar(sendObject);
+
+      if (carInfo?.id) {
+        // Логіка редагування
+        await updateCar(sendObject);
+      } else {
+        // Логіка створення
+        await addCar(sendObject);
+      }
+
       navigate("/exist-cars");
     } catch (error) {
       console.error(error);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
@@ -53,7 +71,7 @@ export const useAddCarForm = ({ carInfo }: UseAddCarFormProps) => {
       isPhotoValid(photo);
 
     setIsSendButtonActive(isFormValid);
-  }, [carName, odometer, photo]);
+  }, [carName, odometer, photo, carInfo]);
 
   return {
     state: {
@@ -61,7 +79,7 @@ export const useAddCarForm = ({ carInfo }: UseAddCarFormProps) => {
       odometer,
       photo,
       isSendButtonActive,
-      isLoading
+      isLoading,
     },
     setters: {
       setCarName,

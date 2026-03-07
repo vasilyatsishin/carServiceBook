@@ -1,10 +1,10 @@
 import type React from "react";
 import styles from "./ExistCars.module.css";
 import { useExistCars } from "./useExistCars";
-import { useEffect, useLayoutEffect } from "react";
+import { useLayoutEffect } from "react";
 import CarCard from "../../components/ExistCars/CarCard/CarCard";
 import { useLocation } from "react-router";
-// import Loader from "../../shared/components/Loader/Loader";
+import Loader from "../../shared/components/Loader/Loader";
 
 const ExistCars: React.FC = () => {
   const { state, functions } = useExistCars();
@@ -19,14 +19,27 @@ const ExistCars: React.FC = () => {
     <>
       <div className={styles.mainWrapper}>
         <div className={styles.listWrapper}>
-          {!state.cars.length && (
-            <div className={styles.emptyContainer}>
-              <h1 className={styles.emptyText}>Список автомобілів порожній</h1>
-            </div>
+          {state.isLoading ? (
+            <Loader visible={state.isLoading} />
+          ) : (
+            <>
+              {!state.cars.length && (
+                <div className={styles.emptyContainer}>
+                  <h1 className={styles.emptyText}>
+                    Список автомобілів порожній
+                  </h1>
+                </div>
+              )}
+
+              {state.cars.map((e) => (
+                <CarCard
+                  key={e.id}
+                  car={e}
+                  onDeleteClick={functions.deleteCar}
+                />
+              ))}
+            </>
           )}
-          {state.cars.map((e) => (
-            <CarCard key={e.id} car={e} />
-          ))}
         </div>
       </div>
     </>

@@ -9,9 +9,16 @@ import DeleteIcon from "@mui/icons-material/DeleteOutline";
 
 interface CarCardProps {
   car: CarReceivingObject;
+  onDeleteClick: (carId: number) => void
 }
 
-const CarCard: React.FC<CarCardProps> = ({ car }) => {
+const CarCard: React.FC<CarCardProps> = ({ car, onDeleteClick }) => {
+  const handleDelete = (e: React.MouseEvent) => {
+    e.preventDefault();  // Забороняє NavLink перейти за посиланням
+    e.stopPropagation(); // Зупиняє передачу кліку від кнопки до NavLink
+    onDeleteClick(car.id);
+  };
+
   return (
     <div className={styles.mainWrapper}>
       <NavLink
@@ -33,12 +40,12 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
             <EditIcon fontSize="small" />
           </NavLink>
 
-          <NavLink
-            to={`${pathConstants.EDIT_CAR}/${car.id}`}
+          <button
+            onClick={handleDelete}
             className={styles.editIconWrapper}
           >
-            <DeleteIcon fontSize="small" />
-          </NavLink>
+            <DeleteIcon fontSize="small" htmlColor="#ff4d4f"/>
+          </button>
         </div>
       </NavLink>
     </div>

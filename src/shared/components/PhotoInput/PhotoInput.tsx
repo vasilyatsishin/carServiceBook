@@ -4,8 +4,9 @@ import { compressImage } from "../../helpers/compressPhoto";
 
 interface PhotoInputProps {
   placeholder: string;
-  setData: React.Dispatch<React.SetStateAction<File | undefined>>;
-  data: File | undefined;
+  // Оновлюємо типи, щоб приймати рядок (URL)
+  setData: React.Dispatch<React.SetStateAction<File | string | undefined>>;
+  data: File | string | undefined;
 }
 
 const PhotoInput: React.FC<PhotoInputProps> = ({
@@ -21,11 +22,13 @@ const PhotoInput: React.FC<PhotoInputProps> = ({
 
     const file = e.target.files[0];
 
+    // Якщо це не зображення, просто передаємо як є (для валідації)
     if (!file.type.startsWith("image/")) {
-      setData(file);
+      setData(file as any);
       return;
     }
 
+    // Стискаємо та встановлюємо як новий файл
     const compressedFile = await compressImage(file, 800, 0.7);
     setData(compressedFile);
   };
@@ -35,14 +38,23 @@ const PhotoInput: React.FC<PhotoInputProps> = ({
       setPreview("");
       return;
     }
-    const objectUrl = URL.createObjectURL(data);
-    setPreview(objectUrl);
 
-    return () => URL.revokeObjectURL(objectUrl); // очищаємо після розмонтування
+    // ЛОГІКА ПРЕВ'Ю
+    if (typeof data === "string") {
+      // Якщо прийшов URL (редагування), просто ставимо його в стейт
+      setPreview(data);
+    } else if (data instanceof File) {
+      // Якщо прийшов файл (нове завантаження), створюємо blob-посилання
+      const objectUrl = URL.createObjectURL(data);
+      setPreview(objectUrl);
+
+      // Обов'язково очищаємо пам'ять тільки для об'єктів File
+      return () => URL.revokeObjectURL(objectUrl);
+    }
   }, [data]);
 
   const handleClick = () => {
-    inputRef.current?.click(); // викликаємо стандартний file picker
+    inputRef.current?.click();
   };
 
   return (
@@ -51,6 +63,7 @@ const PhotoInput: React.FC<PhotoInputProps> = ({
         type="file"
         ref={inputRef}
         onChange={handleChange}
+        accept="image/jpeg,image/png,image/jpg" // Обмежуємо вибір у провіднику
         style={{ display: "none" }}
       />
 

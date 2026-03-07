@@ -25,6 +25,7 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^6.14.0",
     "react-select": "^5.10.2",
+    "react-spinners": "^0.17.0",
     "rsuite": "^6.1.1"
   },
   "devDependencies": {

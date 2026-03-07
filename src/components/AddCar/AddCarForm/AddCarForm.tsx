@@ -4,7 +4,10 @@ import { useAddCarForm } from "./useAddCarForm";
 import styles from "./AddCarForm.module.css";
 import SaveButton from "../../../shared/components/SaveButton/SaveButton";
 import { odometorValidator } from "../../../shared/helpers/validators/addCarValidator";
-import { formatOdometer } from "../../../shared/helpers/formatters/carFormatter";
+import {
+  formatOdometer,
+  parseOdometerIntoNumber,
+} from "../../../shared/helpers/formatters/carFormatter";
 import PhotoInput from "../../../shared/components/PhotoInput/PhotoInput";
 import type { CarReceivingObject } from "../../../interfaces/Cars/CarInterface";
 
@@ -14,6 +17,7 @@ interface AddCarFormProps {
 
 const AddCarForm: React.FC<AddCarFormProps> = ({ carInfo }) => {
   const { setters, state, handlers } = useAddCarForm({ carInfo });
+
   return (
     <>
       <div className={styles.mainWrapper}>
@@ -41,9 +45,22 @@ const AddCarForm: React.FC<AddCarFormProps> = ({ carInfo }) => {
           }
           label="Пробіг, км"
           placeholder="195.000"
-          validator={(value) =>
-            odometorValidator(value) ? null : "Пробіг має містити тільки цифри"
-          }
+          validator={(value) => {
+            if (!odometorValidator(value)) {
+              return "Пробіг має містити тільки цифри";
+            }
+
+            // 2. Перевірка на зменшення пробігу (тільки при редагуванні)
+            if (carInfo) {
+              const currentInputOdometer = parseOdometerIntoNumber(value);
+              if (currentInputOdometer < carInfo.odometer) {
+                return `Пробіг не може бути меншим за попередній (${carInfo.odometer} км)`;
+              }
+            }
+
+            // Якщо все ок
+            return null;
+          }}
           variant="addCar"
         />
 

@@ -11,7 +11,7 @@ const AddCar: React.FC<AddCarProps> = ({ isEdit = false }) => {
   const { carInfo } = useAddCar({ isEdit });
   return (
     <div className={styles.mainWrapper}>
-      <h1 className={styles.header}>Додавання нового авто</h1>
+      <h1 className={styles.header}>{carInfo ? "Редагування існуючого авто" : "Додавання нового авто"}</h1>
       <AddCarForm carInfo={carInfo} />
     </div>
   );
