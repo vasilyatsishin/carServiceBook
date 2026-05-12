@@ -5,9 +5,11 @@ import { useMaintenance } from "./useMaintenance";
 import PerformedMaintenance from "../../components/Maintenance/PerformedMaintenance/PerformedMaintenance";
 import CarInfo from "../../components/Maintenance/CarInfo/CarInfo";
 import Loader from "../../shared/components/Loader/Loader";
+import { useParams } from "react-router-dom";
 
 const Maintenance: React.FC = () => {
   const { state } = useMaintenance();
+  const { carId } = useParams();
 
   if (state.isLoading) {
     return <Loader visible={state.isLoading} />;
@@ -21,7 +23,7 @@ const Maintenance: React.FC = () => {
           <div className={styles.paddingWrapper}>
             <div className={styles.horizontalWrapper}>
               <PerformedMaintenance
-                maintenanceList={state.maintenanceList}
+                carId={Number(carId)}
                 performedMaintenances={state.performedMaintenances}
               />
               {!state.performedMaintenances.length && (
@@ -37,6 +39,7 @@ const Maintenance: React.FC = () => {
                 nextMaintenances={state.maintenanceList.filter(
                   (job) => job.isRegular
                 )}
+                allScheduledJobNames={state.maintenanceList.map((job) => job.jobName)}
               />
               {!state.maintenanceList.length && (
                 <div className={styles.emptyContainer}>

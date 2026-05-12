@@ -13,7 +13,15 @@ export const getCars = async (): Promise<CarReceivingObject[]> => {
   );
   return res.data.map((car) => ({
     ...car,
-    // Тепер photo — це просто посилання на ваш сервер
+    photoUrl: `${BASE_URL}/cars/${car.id}/photo`,
+  }));
+};
+
+// GET all (service role)
+export const getAllCars = async (): Promise<CarReceivingObject[]> => {
+  const res = await api.get<CarReceivingObject[]>(API_CONSTANTS.CARS.GET_ALL_CARS);
+  return res.data.map((car) => ({
+    ...car,
     photoUrl: `${BASE_URL}/cars/${car.id}/photo`,
   }));
 };
@@ -76,7 +84,10 @@ const prepareCarFormData = (car: CarEntity): FormData => {
     formData.append("id", car.id.toString());
   }
 
-  // Додаємо фото тільки якщо це новий файл (File)
+  if (car.ownerId) {
+    formData.append("ownerId", car.ownerId.toString());
+  }
+
   if (car.photo instanceof File) {
     formData.append("photo", car.photo);
   }

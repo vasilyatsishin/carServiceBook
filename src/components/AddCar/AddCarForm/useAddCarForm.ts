@@ -3,15 +3,19 @@ import {
   isPhotoValid,
   odometorValidator,
 } from "../../../shared/helpers/validators/addCarValidator";
-// Додаємо updateCar (або як він у вас називається)
 import { addCar, updateCar } from "../../../services/carService";
+import { getClients } from "../../../services/userService";
 import type {
   CarEntity,
   CarReceivingObject,
+  UserClientDTO,
 } from "../../../interfaces/Cars/CarInterface";
 import { useNavigate } from "react-router";
 import { formatOdometer } from "../../../shared/helpers/formatters/carFormatter";
 import { BASE_DOMAIN_NAME} from "../../../api/apiConfig";
+import { getUserRole } from "../../../shared/helpers/jwtDecoder";
+import { ROLES } from "../../../constants/roles";
+import { pathConstants } from "../../../constants/pathConstants";
 
 interface UseAddCarFormProps {
   carInfo?: CarReceivingObject;
@@ -20,12 +24,20 @@ interface UseAddCarFormProps {
 export const useAddCarForm = ({ carInfo }: UseAddCarFormProps) => {
   const [carName, setCarName] = useState<string>("");
   const [odometer, setOdometer] = useState<string>("");
-  // 1. Змінюємо тип стейту: тепер тут може бути і File, і string (URL)
   const [photo, setPhoto] = useState<File | string | undefined>(undefined);
   const [isSendButtonActive, setIsSendButtonActive] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [selectedOwnerId, setSelectedOwnerId] = useState<number | null>(null);
+  const [clients, setClients] = useState<UserClientDTO[]>([]);
 
+  const isServiceRole = getUserRole() === ROLES.SERVICE;
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isServiceRole) {
+      getClients().then(setClients).catch(() => {});
+    }
+  }, []);
 
   useEffect(() => {
     if (carInfo) {
@@ -46,17 +58,16 @@ export const useAddCarForm = ({ carInfo }: UseAddCarFormProps) => {
         name: carName,
         odometer: cleanOdometer,
         photo: photo instanceof File ? photo : undefined,
+        ...(isServiceRole && selectedOwnerId && { ownerId: selectedOwnerId }),
       };
 
       if (carInfo?.id) {
-        // Логіка редагування
         await updateCar(sendObject);
       } else {
-        // Логіка створення
         await addCar(sendObject);
       }
 
-      navigate("/exist-cars");
+      navigate(isServiceRole ? pathConstants.SERVICE : pathConstants.EXIST_CARS);
     } catch (error) {
       console.error(error);
     } finally {
@@ -65,13 +76,13 @@ export const useAddCarForm = ({ carInfo }: UseAddCarFormProps) => {
   };
 
   useEffect(() => {
-    const isFormValid =
+    const baseValid =
       carName.trim().length >= 3 &&
       odometorValidator(odometer) &&
       isPhotoValid(photo);
-
-    setIsSendButtonActive(isFormValid);
-  }, [carName, odometer, photo, carInfo]);
+    const ownerValid = !isServiceRole || selectedOwnerId !== null;
+    setIsSendButtonActive(baseValid && ownerValid);
+  }, [carName, odometer, photo, carInfo, selectedOwnerId]);
 
   return {
     state: {
@@ -86,6 +97,12 @@ export const useAddCarForm = ({ carInfo }: UseAddCarFormProps) => {
       setOdometer,
       setPhoto,
       setIsSendButtonActive,
+      setSelectedOwnerId,
+    },
+    meta: {
+      isServiceRole,
+      clients,
+      selectedOwnerId,
     },
     handlers: {
       handleSubmit,

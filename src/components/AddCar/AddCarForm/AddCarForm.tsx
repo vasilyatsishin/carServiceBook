@@ -16,7 +16,7 @@ interface AddCarFormProps {
 }
 
 const AddCarForm: React.FC<AddCarFormProps> = ({ carInfo }) => {
-  const { setters, state, handlers } = useAddCarForm({ carInfo });
+  const { setters, state, handlers, meta } = useAddCarForm({ carInfo });
 
   return (
     <>
@@ -26,6 +26,24 @@ const AddCarForm: React.FC<AddCarFormProps> = ({ carInfo }) => {
           placeholder="Додайте фото вашого авто"
           data={state.photo}
         />
+
+        {meta.isServiceRole && (
+          <div className={styles.clientSelectWrapper}>
+            <label className={styles.clientSelectLabel}>Клієнт</label>
+            <select
+              className={styles.clientSelect}
+              value={meta.selectedOwnerId ?? ""}
+              onChange={(e) => setters.setSelectedOwnerId(Number(e.target.value) || null)}
+            >
+              <option value="">— Оберіть клієнта —</option>
+              {meta.clients.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.name} ({c.email})
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
 
         <Input
           data={state.carName}

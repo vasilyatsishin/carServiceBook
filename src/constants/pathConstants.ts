@@ -5,5 +5,9 @@ export const pathConstants = {
   INITIAL_ROUTE: "/",
   MAINTENANCE: "/maintenance",
   LOGIN: "/login",
-  REGISTER: "/register"
+  REGISTER: "/register",
+  OPERATOR: "/operator",
+  SERVICE: "/service",
+  SERVICE_MAINTENANCE: "/service/maintenance",
+  SERVICE_ADD_CAR: "/service/add-car",
 };

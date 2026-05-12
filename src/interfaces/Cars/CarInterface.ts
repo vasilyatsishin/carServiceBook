@@ -3,6 +3,13 @@ export interface CarEntity {
   odometer: string;
   name: string;
   photo?: File;
+  ownerId?: number;
+}
+
+export interface UserClientDTO {
+  id: number;
+  name: string;
+  email: string;
 }
 
 export interface CarReceivingObject {
@@ -10,4 +17,6 @@ export interface CarReceivingObject {
   odometer: number;
   name: string;
   photoUrl: string;
+  ownerName?: string;
+  ownerId?: number;
 }

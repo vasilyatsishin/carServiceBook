@@ -16,3 +16,34 @@
     width: 50%;
   }
 }
+
+.clientSelectWrapper {
+  width: 80%;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.clientSelectLabel {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.clientSelect {
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 1rem;
+  outline: none;
+  font-family: inherit;
+  background: #fff;
+  transition: border-color 0.2s;
+}
+
+.clientSelect:focus {
+  border-color: var(--yellow-color, #ffcc00);
+}

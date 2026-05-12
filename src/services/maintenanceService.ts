@@ -53,3 +53,14 @@ export const addMaintenanceTypeJob = async (
   );
   return res.data;
 };
+
+// POST pay
+export const payMaintenance = async (
+  maintenanceId: number,
+  carId: number
+): Promise<string> => {
+  const res = await api.post<string>(
+    `${API_CONSTANTS.PERFORMED_MAINTENANCE.PAY(maintenanceId)}?carId=${carId}`
+  );
+  return res.data;
+};

@@ -6,7 +6,7 @@ const NavLayout = () => {
     <>
       <NavBar />
       <main>
-        <Outlet /> {/* Тут рендеряться вкладені маршрути */}
+        <Outlet />
       </main>
     </>
   );

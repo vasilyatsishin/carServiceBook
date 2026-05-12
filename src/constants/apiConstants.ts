@@ -8,6 +8,7 @@ export const API_CONSTANTS = {
     CARS: "/cars/",
     CAR_CREATE: "/cars/create",
     GET_EXIST_CARS: "/cars/exist-cars",
+    GET_ALL_CARS: "/cars/all-cars",
     UPDATE_ODOMETER: "/cars/update/odometer",
     DELETE_CAR: "/cars/delete",
     UPDATE_CAR: "/cars/update",
@@ -19,5 +20,12 @@ export const API_CONSTANTS = {
   PERFORMED_MAINTENANCE: {
     CREATE: "/performed-maintenance/create",
     GET: "/performed-maintenance",
+    PAY: (id: number) => `/performed-maintenance/${id}/pay`,
+  },
+  SERVICES_CATALOG: {
+    GET: "/services-catalog",
+    CREATE: "/services-catalog",
+    UPDATE: (id: number) => `/services-catalog/${id}`,
+    DELETE: (id: number) => `/services-catalog/${id}`,
   },
 };

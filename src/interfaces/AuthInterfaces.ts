@@ -8,3 +8,8 @@ export interface LoginDTO {
   email: string;
   password: string;
 }
+
+export interface AccessTokenView {
+  sub: string;
+  role: string;
+}

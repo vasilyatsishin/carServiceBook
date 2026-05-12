@@ -9,10 +9,11 @@ export interface BaseMaintenanceHistoryObject {
 export interface MaintenanceHistorySendObject
   extends BaseMaintenanceHistoryObject {
   carId: number;
-  performedMaintenance: number[];
+  performedCatalogIds: number[];
 }
 
 export interface MaintenanceHistoryReceivingObject
   extends BaseMaintenanceHistoryObject {
   id: number;
+  isPaid: boolean;
 }

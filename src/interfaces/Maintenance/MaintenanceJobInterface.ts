@@ -2,7 +2,7 @@ export interface MaintenanceJobSendObject {
   carId: number;
   applyToAllCars: boolean;
   interval: number;
-  name: string;
+  catalogId: number;
   regular: boolean;
 }
 

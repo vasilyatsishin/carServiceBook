@@ -4,6 +4,9 @@ import { login } from "../../services/authService";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "../../shared/providers/ToastProvider";
 import { validateEmail } from "../../shared/helpers/validators/authValidator";
+import { getUserRole } from "../../shared/helpers/jwtDecoder";
+import { ROLES } from "../../constants/roles";
+import { pathConstants } from "../../constants/pathConstants";
 
 export const useLogin = () => {
   const [email, setEmail] = useState<string>("");
@@ -48,7 +51,14 @@ export const useLogin = () => {
         localStorage.setItem("access", response);
       }
 
-      navigate("/exist-cars");
+      const role = getUserRole();
+      if (role === ROLES.OPERATOR) {
+        navigate(pathConstants.OPERATOR);
+      } else if (role === ROLES.SERVICE) {
+        navigate(pathConstants.SERVICE);
+      } else {
+        navigate(pathConstants.EXIST_CARS);
+      }
 
       toast("Успішна авторизація", "success");
     } catch (error: any) {
