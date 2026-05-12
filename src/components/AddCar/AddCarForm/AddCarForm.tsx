@@ -33,7 +33,9 @@ const AddCarForm: React.FC<AddCarFormProps> = ({ carInfo }) => {
             <select
               className={styles.clientSelect}
               value={meta.selectedOwnerId ?? ""}
-              onChange={(e) => setters.setSelectedOwnerId(Number(e.target.value) || null)}
+              onChange={(e) =>
+                setters.setSelectedOwnerId(Number(e.target.value) || null)
+              }
             >
               <option value="">— Оберіть клієнта —</option>
               {meta.clients.map((c) => (

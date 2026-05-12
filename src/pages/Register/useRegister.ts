@@ -8,6 +8,9 @@ import { register } from "../../services/authService";
 import { useToast } from "../../shared/providers/ToastProvider";
 import type { RegisterDTO } from "../../interfaces/AuthInterfaces";
 import { useNavigate } from "react-router-dom";
+import { getUserRole } from "../../shared/helpers/jwtDecoder";
+import { ROLES } from "../../constants/roles";
+import { pathConstants } from "../../constants/pathConstants";
 
 export const useRegister = () => {
   const [name, setName] = useState<string>("");
@@ -67,7 +70,14 @@ export const useRegister = () => {
         localStorage.setItem("access", response);
       }
 
-      navigate("/exist-cars");
+      const role = getUserRole();
+      if (role === ROLES.OPERATOR) {
+        navigate(pathConstants.OPERATOR);
+      } else if (role === ROLES.SERVICE) {
+        navigate(pathConstants.SERVICE);
+      } else {
+        navigate(pathConstants.EXIST_CARS);
+      }
 
       toast("Успішна реєстрація", "success");
     } catch (error: any) {
