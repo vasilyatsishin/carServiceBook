@@ -29,9 +29,6 @@ const NavBar: React.FC = () => {
           <NavLink to={pathConstants.SERVICE} className={styles.navlink}>
             Всі автомобілі
           </NavLink>
-          <NavLink to={pathConstants.SERVICE_ADD_CAR} className={styles.yellowContainerNavlink}>
-            Додати авто
-          </NavLink>
         </>
       )}
 

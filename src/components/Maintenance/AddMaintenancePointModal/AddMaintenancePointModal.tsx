@@ -28,10 +28,12 @@ const AddMaintenancePointModal: React.FC<AddMaintenancePointModalProps> = ({
     scheduledJobNames,
   });
 
-  const catalogOptions: DropDownOptionsInterface[] = state.catalogItems.map((c) => ({
-    value: c.id,
-    label: c.name,
-  }));
+  const catalogOptions: DropDownOptionsInterface[] = state.catalogItems.map(
+    (c) => ({
+      value: c.id,
+      label: c.name,
+    }),
+  );
 
   return (
     <>
@@ -46,19 +48,23 @@ const AddMaintenancePointModal: React.FC<AddMaintenancePointModalProps> = ({
         >
           <h1>Створити тип обслуговування</h1>
           <div className={styles.fullsizeWrapper} style={{ marginBottom: 10 }}>
-            <p style={{ fontSize: 13, marginBottom: 4 }}>Робота</p>
+            <p style={{ fontSize: 16, margin: 0, fontWeight: 600 }}>Робота</p>
             <Select<DropDownOptionsInterface>
               placeholder="Виберіть роботу з довідника"
               noOptionsMessage={() => "Довідник порожній"}
               options={catalogOptions}
-              value={catalogOptions.find((o) => o.value === state.catalogId) ?? null}
+              value={
+                catalogOptions.find((o) => o.value === state.catalogId) ?? null
+              }
               onChange={(opt) => setters.setCatalogId(opt ? opt.value : null)}
               styles={{
                 control: (provided, s) => ({
                   ...provided,
                   border: 0,
                   borderBottom: "1px solid",
-                  borderBottomColor: s.isFocused ? "var(--yellow-color)" : "black",
+                  borderBottomColor: s.isFocused
+                    ? "var(--yellow-color)"
+                    : "black",
                   "&:hover": { borderBottomColor: "var(--yellow-color)" },
                   boxShadow: "none",
                   borderRadius: 0,
@@ -85,10 +91,6 @@ const AddMaintenancePointModal: React.FC<AddMaintenancePointModalProps> = ({
             }
           />
           <div className={styles.fullsizeWrapper}>
-            <Checkbox
-              handleChoose={(e) => setters.setAddToAllCars(e.target.checked)}
-              label="Застосувати для всіх авто"
-            />
             <Checkbox
               handleChoose={(e) => setters.setRegular(e.target.checked)}
               label="Регулярне обслуговування"
