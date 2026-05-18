@@ -17,3 +17,13 @@ export interface MaintenanceHistoryReceivingObject
   id: number;
   isPaid: boolean;
 }
+
+export interface MaintenanceDetailsItem {
+  name: string;
+  price: number;
+}
+
+export interface MaintenanceDetailsResponse {
+  works: MaintenanceDetailsItem[];
+  totalPrice: number;
+}

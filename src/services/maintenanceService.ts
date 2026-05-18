@@ -5,6 +5,7 @@ import type {
   NextMaintenanceObject,
 } from "../interfaces/Maintenance/MaintenanceJobInterface";
 import type {
+  MaintenanceDetailsResponse,
   MaintenanceHistoryReceivingObject,
   MaintenanceHistorySendObject,
 } from "../interfaces/Maintenance/PerformedMaintenanceInterface";
@@ -50,6 +51,16 @@ export const addMaintenanceTypeJob = async (
   const res = await api.post<string>(
     API_CONSTANTS.MAINTENANCE_JOBS.MAINTENANCE_CREATE,
     job
+  );
+  return res.data;
+};
+
+// GET details
+export const getMaintenanceDetails = async (
+  maintenanceId: number
+): Promise<MaintenanceDetailsResponse> => {
+  const res = await api.get<MaintenanceDetailsResponse>(
+    API_CONSTANTS.PERFORMED_MAINTENANCE.DETAILS(maintenanceId)
   );
   return res.data;
 };

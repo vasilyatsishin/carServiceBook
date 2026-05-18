@@ -26,6 +26,18 @@
   font-weight: 800;
 }
 
+.historyItem {
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 4px 6px;
+  margin: 0 -6px;
+  transition: background 0.15s;
+}
+
+.historyItem:hover {
+  background: #f9f5e0;
+}
+
 .rowWrapper {
   display: flex;
   justify-content: space-between;

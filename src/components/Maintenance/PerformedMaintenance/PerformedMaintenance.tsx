@@ -7,6 +7,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { usePerformedMaintenance } from "./usePerformedMaintenance";
 import AddMaintenanceHistoryModal from "../AddMaintenanceHistoryModal/AddMaintenanceHistoryModal";
 import PaymentModal from "../../PaymentModal/PaymentModal";
+import MaintenanceDetailsModal from "../MaintenanceDetailsModal/MaintenanceDetailsModal";
 import type { MaintenanceHistoryReceivingObject } from "../../../interfaces/Maintenance/PerformedMaintenanceInterface";
 import { formatOdometer } from "../../../shared/helpers/formatters/carFormatter";
 import { getUserRole } from "../../../shared/helpers/jwtDecoder";
@@ -24,6 +25,7 @@ const PerformedMaintenance: React.FC<PerformedMaintenanceProps> = ({
 }) => {
   const { setters, state } = usePerformedMaintenance();
   const [payTarget, setPayTarget] = useState<MaintenanceHistoryReceivingObject | null>(null);
+  const [detailsTarget, setDetailsTarget] = useState<MaintenanceHistoryReceivingObject | null>(null);
   const queryClient = useQueryClient();
   const role = getUserRole();
   const isOwner = role === ROLES.OWNER;
@@ -50,7 +52,11 @@ const PerformedMaintenance: React.FC<PerformedMaintenanceProps> = ({
             .slice()
             .sort((a, b) => b.odometer - a.odometer)
             .map((e) => (
-              <div key={e.id}>
+              <div
+                key={e.id}
+                className={styles.historyItem}
+                onClick={() => setDetailsTarget(e)}
+              >
                 <div className={styles.rowWrapper}>
                   <h2 className={styles.performingPlace}>{e.place}</h2>
                   <h3 className={styles.datePerformed}>{e.date}</h3>
@@ -71,7 +77,7 @@ const PerformedMaintenance: React.FC<PerformedMaintenanceProps> = ({
                   {isOwner && !e.isPaid && (
                     <button
                       className={styles.payButton}
-                      onClick={() => setPayTarget(e)}
+                      onClick={(ev) => { ev.stopPropagation(); setPayTarget(e); }}
                     >
                       <PaymentIcon sx={{ fontSize: 16 }} />
                       Оплатити
@@ -100,6 +106,15 @@ const PerformedMaintenance: React.FC<PerformedMaintenanceProps> = ({
           onSuccess={() => {
             queryClient.invalidateQueries({ queryKey: ["performedMaintenances", String(carId)] });
           }}
+        />
+      )}
+
+      {detailsTarget && (
+        <MaintenanceDetailsModal
+          maintenanceId={detailsTarget.id}
+          place={detailsTarget.place}
+          date={detailsTarget.date}
+          onClose={() => setDetailsTarget(null)}
         />
       )}
     </>

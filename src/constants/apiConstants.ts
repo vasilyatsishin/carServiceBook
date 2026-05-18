@@ -20,6 +20,7 @@ export const API_CONSTANTS = {
   PERFORMED_MAINTENANCE: {
     CREATE: "/performed-maintenance/create",
     GET: "/performed-maintenance",
+    DETAILS: (id: number) => `/performed-maintenance/${id}/details`,
     PAY: (id: number) => `/performed-maintenance/${id}/pay`,
   },
   SERVICES_CATALOG: {

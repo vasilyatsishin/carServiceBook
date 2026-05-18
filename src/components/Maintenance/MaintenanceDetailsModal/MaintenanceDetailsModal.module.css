@@ -1,0 +1,132 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px 28px;
+  width: 100%;
+  max-width: 460px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 6px;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.closeBtn:hover {
+  color: #222;
+}
+
+.meta {
+  font-size: 0.82rem;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.worksList {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.worksList::-webkit-scrollbar {
+  width: 5px;
+}
+
+.worksList::-webkit-scrollbar-thumb {
+  background-color: var(--yellow-color, #ffcc00);
+  border-radius: 10px;
+}
+
+.worksList::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.workRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  gap: 12px;
+}
+
+.workRow:last-child {
+  border-bottom: none;
+}
+
+.workName {
+  font-size: 0.92rem;
+  color: #333;
+}
+
+.workPrice {
+  font-size: 0.92rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #555;
+}
+
+.empty {
+  text-align: center;
+  color: #aaa;
+  font-size: 0.9rem;
+  padding: 24px 0;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 2px solid #f0f0f0;
+  padding-top: 14px;
+  margin-top: 8px;
+}
+
+.totalLabel {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.totalPrice {
+  font-weight: 900;
+  font-size: 1.15rem;
+  color: var(--yellow-color, #ffcc00);
+}
+
+.spinner {
+  text-align: center;
+  padding: 32px 0;
+  color: #aaa;
+  font-size: 0.9rem;
+}
